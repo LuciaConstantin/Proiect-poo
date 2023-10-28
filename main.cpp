@@ -18,13 +18,16 @@ private:
 public:
     carte()= default;
     ~carte()= default;
-    carte(std::string titlu, std::string autor, std::string domeniu,
-          std::string disponibilitate, std::string isbn, std::string limba,
-          std::string editura, int anAparitie, std::string nrInventar)
-            : titlu(std::move(titlu)), autor(std::move(autor)), domeniu(std::move(domeniu)),
-              disponibilitate(std::move(disponibilitate)), ISBN(std::move(isbn)), limba(std::move(limba)),
-              editura(std::move(editura)), an_aparitie(anAparitie), nr_inventar(std::move(nrInventar)) {}
 
+    carte(const std::string &titlu, const std::string &autor, const std::string &domeniu,
+          const std::string &disponibilitate, const std::string &isbn, const std::string &limba,
+          const std::string &editura, int anAparitie, const std::string &nrInventar) : titlu(titlu), autor(autor),
+                                                                                       domeniu(domeniu),
+                                                                                       disponibilitate(disponibilitate),
+                                                                                       ISBN(isbn), limba(limba),
+                                                                                       editura(editura),
+                                                                                       an_aparitie(anAparitie),
+                                                                                       nr_inventar(nrInventar) {}
 
 
     friend std::ostream &operator<<(std::ostream &os, const carte &carte) {
@@ -125,7 +128,7 @@ public:
         std::getline(std::cin,Prenume_client);
         int ok=0;
         for(const client &cli: clienti)
-            if(std::strcmp(cli.nume.c_str(),Nume_client.c_str())==0 && stricmp(cli.prenume.c_str(),Prenume_client.c_str())==0)///std::strcmp
+            if(std::strcmp(cli.nume.c_str(),Nume_client.c_str())==0 && std::strcmp(cli.prenume.c_str(),Prenume_client.c_str())==0)///std::strcmp
             {
                 std::cout << "Clientul " << Nume_client <<" "<< Prenume_client <<" exista deja in baza nostra de date " << std::endl;
                 ok=1;
