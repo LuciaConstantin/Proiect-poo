@@ -32,7 +32,7 @@ public:
     void static afisare_infcarte(const std::vector <carte> &carti)
     {
         std::string Titlu_carte;
-        std::cout<<"Pentru ce carte vrei sa aflii informatiile: "<<std::endl;
+        std::cout<<"Pentru ce carte vrei sa aflii informatiile : "<<std::endl;
         std::getline(std::cin,Titlu_carte);
         int i=0;
         bool ok=0;
