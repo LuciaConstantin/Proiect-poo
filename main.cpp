@@ -84,18 +84,12 @@ public:
 
     }
     carte(const carte &c)
-    {
-        titlu = c.titlu;
-        autor = c.autor;
-        domeniu = c.domeniu;
-        disponibilitate = c.disponibilitate;
-        ISBN = c.ISBN;
-        limba = c.limba;
-        editura = c.editura;
-        an_aparitie = c.an_aparitie;
-        nr_inventar = c.nr_inventar;
-    }
-   // carte  &operator=(const carte &carte) = default;
+            : titlu(c.titlu), autor(c.autor), domeniu(c.domeniu), disponibilitate(c.disponibilitate),
+              ISBN(c.ISBN), limba(c.limba), editura(c.editura), an_aparitie(c.an_aparitie),
+              nr_inventar(c.nr_inventar)
+    { }
+
+    // carte  &operator=(const carte &carte) = default;
    carte  &operator=(const carte &carte) {
        /*if (this == &carte) {
            return *this;  // Evitați auto-atribuirea
