@@ -13,16 +13,18 @@ private:
     std::string ISBN;//codul numeric specific fiecarei carti
     std::string limba;///optinonal
     std::string editura;
-    int an_aparitie;///optional
+    int an_aparitie=0;///optional
     std::string nr_inventar;
 public:
     carte()= default;
     ~carte()= default;
-    carte(const std::string &titlu, const std::string &autor, const std::string &domeniu,
-          const std::string &disponibilitate, const std::string &isbn, const std::string &limba,
-          const std::string &editura, int anAparitie, const std::string &nrInventar)
-            : titlu(titlu), autor(autor), domeniu(domeniu), disponibilitate(disponibilitate),
-              ISBN(isbn), limba(limba), editura(editura), an_aparitie(anAparitie), nr_inventar(nrInventar) {}
+    carte(std::string titlu, std::string autor, std::string domeniu,
+          std::string disponibilitate, std::string isbn, std::string limba,
+          std::string editura, int anAparitie, std::string nrInventar)
+            : titlu(std::move(titlu)), autor(std::move(autor)), domeniu(std::move(domeniu)),
+              disponibilitate(std::move(disponibilitate)), ISBN(std::move(isbn)), limba(std::move(limba)),
+              editura(std::move(editura)), an_aparitie(anAparitie), nr_inventar(std::move(nrInventar)) {}
+
 
 
     friend std::ostream &operator<<(std::ostream &os, const carte &carte) {
@@ -38,7 +40,7 @@ public:
         std::cout<<"Pentru ce carte vrei sa aflii informatiile : "<<std::endl;
         std::getline(std::cin,Titlu_carte);
         int i=0;
-        bool ok=0;
+        int ok=0;
         for(const carte &cart: carti)
         {   if(std::strcmp(cart.titlu.c_str(),Titlu_carte.c_str())==0)///std::strcmp
             {   ok=1;
@@ -62,7 +64,7 @@ public:
         std::cout<<"Cautati cartile dupa autor "<<std::endl;
         std::string Nume_autor;
         std::getline(std::cin,Nume_autor);
-        bool ok=0;
+        int ok=0;
         int i=0;
         for(const carte &cart: carti)
         {if(std::strcmp(cart.autor.c_str(),Nume_autor.c_str())==0)///std::strcmp
@@ -88,21 +90,7 @@ public:
         an_aparitie = c.an_aparitie;
         nr_inventar = c.nr_inventar;
     }
-    carte  &operator=(const carte &carte) {
-        /*if (this == &carte) {
-            return *this;  // Evitați auto-atribuirea
-        }*/
-        titlu = carte.titlu;
-        autor = carte.autor;
-        domeniu = carte.domeniu;
-        disponibilitate = carte.disponibilitate;
-        ISBN = carte.ISBN;
-        limba = carte.limba;
-        editura = carte.editura;
-        an_aparitie = carte.an_aparitie;
-        nr_inventar = carte.nr_inventar;
-        return *this;
-    }
+    carte  &operator=(const carte &carte) = default;
 
 
 };
@@ -135,7 +123,7 @@ public:
         std::getline(std::cin,Nume_client);
         std::cout<<"Prenumele clientului este "<<std::endl;
         std::getline(std::cin,Prenume_client);
-        bool ok=0;
+        int ok=0;
         for(const client &cli: clienti)
             if(std::strcmp(cli.nume.c_str(),Nume_client.c_str())==0 && stricmp(cli.prenume.c_str(),Prenume_client.c_str())==0)///std::strcmp
             {
@@ -187,7 +175,7 @@ private:
     std::string nr_telefon;
     std::string ocupatie;
     std::string data_angajare;
-    int salariu;
+    int salariu=0;
 public:
     angajat()=default;
     ~angajat()=default;
