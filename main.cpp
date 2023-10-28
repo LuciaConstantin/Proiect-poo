@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <cstring>
+#include <string>
 /// sistem de gestionare al unei biblioteci
 
 class carte{
