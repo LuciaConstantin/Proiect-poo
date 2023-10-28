@@ -20,7 +20,10 @@ public:
     ~carte()= default;
     carte(const std::string &titlu, const std::string &autor, const std::string &domeniu,
           const std::string &disponibilitate, const std::string &isbn, const std::string &limba,
-          const std::string &editura, int anAparitie, const std::string &nrInventar) : titlu(titlu), autor(autor),domeniu(domeniu), disponibilitate(disponibilitate),ISBN(isbn), limba(limba),editura(editura),an_aparitie(anAparitie),nr_inventar(nrInventar) {}
+          const std::string &editura, int anAparitie, const std::string &nrInventar)
+            : titlu(titlu), autor(autor), domeniu(domeniu), disponibilitate(disponibilitate),
+              ISBN(isbn), limba(limba), editura(editura), an_aparitie(anAparitie), nr_inventar(nrInventar) {}
+
 
     friend std::ostream &operator<<(std::ostream &os, const carte &carte) {
         os << "titlu: " << carte.titlu << " autor: " << carte.autor << " domeniu: " << carte.domeniu
@@ -116,8 +119,8 @@ public:
     client()= default;
     ~client()=default;
     client(const std::string &nume, const std::string &prenume, const std::string &email, const std::string &nrTelefon,
-           const std::string &dataInscriere) : nume(nume), prenume(prenume), email(email), nr_telefon(nrTelefon),
-                                               data_inscriere(dataInscriere) {}
+           const std::string &dataInscriere)
+            : nume(nume), prenume(prenume), email(email), nr_telefon(nrTelefon), data_inscriere(dataInscriere) {}
 
     friend std::ostream &operator<<(std::ostream &os, const client &client) {
         os << "nume: " << client.nume << " prenume: " << client.prenume << " email: " << client.email << " nr_telefon: "
@@ -191,9 +194,10 @@ public:
 
     angajat(const std::string &nume, const std::string &prenume, const std::string &cnp, const std::string &adresa,
             const std::string &email, const std::string &nrTelefon, const std::string &ocupatie,
-            const std::string &dataAngajare, int salariu) : nume(nume), prenume(prenume), CNP(cnp), adresa(adresa),
-                                                            email(email), nr_telefon(nrTelefon), ocupatie(ocupatie),
-                                                            data_angajare(dataAngajare), salariu(salariu) {}
+            const std::string &dataAngajare, int salariu)
+            : nume(nume), prenume(prenume), CNP(cnp), adresa(adresa), email(email), nr_telefon(nrTelefon),
+              ocupatie(ocupatie), data_angajare(dataAngajare), salariu(salariu) {}
+
 
     friend std::ostream &operator<<(std::ostream &os, const angajat &angajat) {
         os << "nume: " << angajat.nume << " prenume: " << angajat.prenume << " CNP: " << angajat.CNP << " adresa: "
