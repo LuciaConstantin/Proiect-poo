@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstring>
 #include <string>
+#include <string.h>
 /// sistem de gestionare al unei biblioteci
 
 class carte{
