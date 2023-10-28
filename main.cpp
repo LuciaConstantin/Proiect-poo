@@ -29,7 +29,7 @@ public:
            << carte.nr_inventar<<std::endl;
         return os;
     }
-    void static afisare_infcarte(const std::vector <carte> carti)
+    void static afisare_infcarte(const std::vector <carte> &carti)
     {
         std::string Titlu_carte;
         std::cout<<"Pentru ce carte vrei sa aflii informatiile: "<<std::endl;
@@ -37,7 +37,7 @@ public:
         int i=0;
         bool ok=0;
         for(const carte &cart: carti)
-        {   if(stricmp(cart.titlu.c_str(),Titlu_carte.c_str())==0)///std::strcmp
+        {   if(std::strcmp(cart.titlu.c_str(),Titlu_carte.c_str())==0)///std::strcmp
             {   ok=1;
                 break;
             }
@@ -62,7 +62,7 @@ public:
         bool ok=0;
         int i=0;
         for(const carte &cart: carti)
-        {if(stricmp(cart.autor.c_str(),Nume_autor.c_str())==0)///std::strcmp
+        {if(std::strcmp(cart.autor.c_str(),Nume_autor.c_str())==0)///std::strcmp
             {
                 std::cout << "Autorul " << Nume_autor << " a scris: " << carti[i].titlu << std::endl;
                 ok=1;
@@ -134,7 +134,7 @@ public:
         std::getline(std::cin,Prenume_client);
         bool ok=0;
         for(const client &cli: clienti)
-            if(stricmp(cli.nume.c_str(),Nume_client.c_str())==0 && stricmp(cli.prenume.c_str(),Prenume_client.c_str())==0)///std::strcmp
+            if(std::strcmp(cli.nume.c_str(),Nume_client.c_str())==0 && stricmp(cli.prenume.c_str(),Prenume_client.c_str())==0)///std::strcmp
             {
                 std::cout << "Clientul " << Nume_client <<" "<< Prenume_client <<" exista deja in baza nostra de date " << std::endl;
                 ok=1;
@@ -214,7 +214,7 @@ public:
         bool ok = 0;
         for (angajat &ang: angajati) {
             {
-                if (stricmp(ang.nume.c_str(), ang_modif.c_str()) == 0){///gasesc angajatul
+                if (std::strcmp(ang.nume.c_str(), ang_modif.c_str()) == 0){///gasesc angajatul
                     ok = 1;
                     break;
                 }
@@ -223,13 +223,13 @@ public:
         }
 
         if (ok == 1) {
-            if (stricmp("adresa", data_modif.c_str()) == 0)
+            if (std::strcmp("adresa", data_modif.c_str()) == 0)
                 angajati[i].adresa = inf_modif;
-            else if (stricmp("email", data_modif.c_str()) == 0)
+            else if (std::strcmp("email", data_modif.c_str()) == 0)
                 angajati[i].email = inf_modif;
-            else if (stricmp("nr_telefon", data_modif.c_str()) == 0)
+            else if (std::strcmp("nr_telefon", data_modif.c_str()) == 0)
                 angajati[i].nr_telefon = inf_modif;
-            else if (stricmp("salariu", data_modif.c_str()) == 0)
+            else if (std::strcmp("salariu", data_modif.c_str()) == 0)
                 angajati[i].salariu = std::stoi(inf_modif);
             else
                 std::cout << "Data " << data_modif << " nu poate fi modificata " << std::endl;
