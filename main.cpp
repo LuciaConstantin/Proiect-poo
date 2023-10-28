@@ -41,7 +41,7 @@ public:
     {
         std::string Titlu_carte;
         std::cout<<"Pentru ce carte vrei sa aflii informatiile : "<<std::endl;
-        std::getline(std::cin,Titlu_carte);
+        getline(std::cin,Titlu_carte);
         int i=0;
         int ok=0;
         for(const carte &cart: carti)
@@ -66,7 +66,7 @@ public:
     {
         std::cout<<"Cautati cartile dupa autor "<<std::endl;
         std::string Nume_autor;
-        std::getline(std::cin,Nume_autor);
+        getline(std::cin,Nume_autor);
         int ok=0;
         int i=0;
         for(const carte &cart: carti)
@@ -93,7 +93,22 @@ public:
         an_aparitie = c.an_aparitie;
         nr_inventar = c.nr_inventar;
     }
-    carte  &operator=(const carte &carte) = default;
+   // carte  &operator=(const carte &carte) = default;
+   carte  &operator=(const carte &carte) {
+       /*if (this == &carte) {
+           return *this;  // Evitați auto-atribuirea
+       }*/
+       titlu = carte.titlu;
+       autor = carte.autor;
+       domeniu = carte.domeniu;
+       disponibilitate = carte.disponibilitate;
+       ISBN = carte.ISBN;
+       limba = carte.limba;
+       editura = carte.editura;
+       an_aparitie = carte.an_aparitie;
+       nr_inventar = carte.nr_inventar;
+       return *this;
+   }
 
 
 };
@@ -123,9 +138,9 @@ public:
         std::cout<<"Cautarea unui client in baza de date "<<std::endl;
         std::string Nume_client, Prenume_client;
         std::cout<<"Numele clientului este "<<std::endl;
-        std::getline(std::cin,Nume_client);
+        getline(std::cin,Nume_client);
         std::cout<<"Prenumele clientului este "<<std::endl;
-        std::getline(std::cin,Prenume_client);
+        getline(std::cin,Prenume_client);
         int ok=0;
         for(const client &cli: clienti)
             if(std::strcmp(cli.nume.c_str(),Nume_client.c_str())==0 && std::strcmp(cli.prenume.c_str(),Prenume_client.c_str())==0)///std::strcmp
@@ -316,8 +331,10 @@ int main() {
     carte crte;
     client cli;
     angajat ang;
+    std::cout <<"Prima copiere"<<std::endl;
     carte carte_copiata1(carti[2]);
     std::cout<<carte_copiata1<<std::endl;
+    std::cout<<"A doua copiere "<<std::endl;
     carte carte_copiata2=carti[2];
     std::cout<<carte_copiata2<<std::endl;
     crte.afisare_infcarte(carti);
