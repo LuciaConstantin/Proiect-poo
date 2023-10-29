@@ -319,6 +319,7 @@ int main() {
         angajati.push_back(angajat_nou);
     }
     a.close();
+    std::cout<<std::endl;
     for(const angajat &ang:angajati)
         std::cout<< ang<< std::endl;
 
@@ -331,12 +332,16 @@ int main() {
     carte carte_copiata1(carti[2]);
     std::cout<<carte_copiata1<<std::endl;
     std::cout<<"A doua copiere "<<std::endl;
-    carte carte_copiata2=carti[2];
+    carte carte_copiata2=carti[1];
     std::cout<<carte_copiata2<<std::endl;
     crte.afisare_infcarte(carti);
+    std::cout<<std::endl;
     crte.afisare_cartiAutor(carti);
+    std::cout<<std::endl;
     cli.gasire_client(clienti);
+    std::cout<<std::endl;
     cli.inserare_client(clienti);
+    std::cout<<std::endl;
     ang.modificare_dateAng(angajati);
 
     return 0;
