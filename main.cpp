@@ -394,5 +394,13 @@ int main() {
     cli.insertCustomer(Customers);
     emp.modifEmployee(employees);
 
+    for (Person* person : p) {
+        delete person;
+    }
+    p.clear();
+
+    Customers.clear();
+    employees.clear();
+
     return 0;
 }
