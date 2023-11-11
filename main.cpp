@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-//#include <string.h>
-//#include <cstring>
+#include <string.h>
+#include <cstring>
 #include <string>
 ///library management system
 
@@ -46,7 +46,7 @@ public:
         return os;
     }
 
-    void static bookInfo(const std::vector<Book> &books) {
+   /* void static bookInfo(const std::vector<Book> &books) {
         std::string bookTitle;
         std::cout << "For which Book do you want to find out the information: ";
         getline(std::cin, bookTitle);
@@ -104,9 +104,6 @@ public:
 
     // Book  &operator=(const Book &Book) = default;
     Book &operator=(const Book &Book) {
-        /*if (this == &Book) {
-            return *this;
-        }*/
         title = Book.title;
         author = Book.author;
         domain = Book.domain;
@@ -119,7 +116,7 @@ public:
         return *this;
     }
 
-
+*/
 };
 
 class Person {
@@ -132,7 +129,7 @@ protected:
 public:
     Person() = default;
 
-    ~Person() = default;
+    virtual ~Person() = default;
 
     Person(const std::string &firstName, const std::string &lastName, const std::string &email,
            const std::string &telephoneNumber, const std::string &id) : firstName(firstName), lastName(lastName),
@@ -173,7 +170,7 @@ private:
 public:
     Customer() = default;
 
-    ~Customer() = default;
+    virtual ~Customer() = default;
 
     Customer(const std::string &firstName, const std::string &lastName, const std::string &email,
              const std::string &telephoneNumber, const std::string &id, const std::string &registrationDate)
@@ -226,8 +223,7 @@ private:
     int salary = 0;
 public:
     Employee() = default;
-
-    ~Employee() = default;
+    virtual ~Employee() = default;
 
     Employee(const std::string &firstName, const std::string &lastName, const std::string &email,
              const std::string &telephoneNumber, const std::string &id, const std::string &cnp,
