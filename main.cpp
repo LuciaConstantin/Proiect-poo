@@ -176,7 +176,7 @@ public:
     ~Customer() = default;
 
     Customer(const std::string &firstName, const std::string &lastName, const std::string &email,
-             const std::string &telephoneNumber, const std::string id, const std::string &registrationDate)
+             const std::string &telephoneNumber, const std::string &id, const std::string &registrationDate)
             : Person(firstName, lastName, email, telephoneNumber, id),
               registrationDate(registrationDate) {
     }
