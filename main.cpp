@@ -2,7 +2,8 @@
 #include <fstream>
 #include <vector>
 #include <string.h>
-
+#include <cstring>
+#include <string>
 ///library management system
 
 class Book {
