@@ -26,7 +26,7 @@ public:
 
     void display() override;
     static void modifEmployee(std::vector<Employee> &employees);
-    void insertPerson(std::vector<std::shared_ptr<Person>> &Persons);
+    void insertPerson(std::vector<std::shared_ptr<Person>> &Persons)override;
 };
 
 
