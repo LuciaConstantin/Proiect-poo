@@ -16,7 +16,7 @@ Employee::Employee(const std::string &firstName, const std::string &lastName, co
 void Employee::display(){
     Person::display();
     std::cout << " CNP: " << CNP << " Address: " << address << " Position: " << position << " Hire date: "
-    << hireDate << "Salary: "<<salary<<std::endl;
+    << hireDate << "Salary: "<<salary <<std::endl;
 }
 void Employee::modifEmployee(std::vector<Employee> &employees) {
     std::string dataEmp, infoEmp, nameEmp;
@@ -61,35 +61,35 @@ void Employee::modifEmployee(std::vector<Employee> &employees) {
 }
 void Employee::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Employee insert " << std::endl;
-    std::string lastName, firstName, email, phoneNumber, id, cnp, addr, posit, date, sal ;
+    std::string lastNameEmp, firstNameEmp, emailEmp, phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp, dateEmp, salEmp ;
     std::cout << "Last name: ";
-    std::cin >> lastName;
+    std::cin >> lastNameEmp;
     std::cout << "First name: ";
-    std::cin >> firstName;
+    std::cin >> firstNameEmp;
     std::cout << "Email: ";
-    std::cin >> email;
+    std::cin >> emailEmp;
     std::cout << "Phone number: ";
-    std::cin >> phoneNumber;
+    std::cin >> phoneNumberEmp;
     std::cout << "ID: ";
-    std::cin >> id;
+    std::cin >> idEmp;
     std::cout << "CNP: ";
-    std::cin >> cnp;
+    std::cin >> cnpEmp;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "Address: ";
-    getline(std::cin,addr);
+    getline(std::cin,addrEmp);
     std::cout << "Position: ";
-    std::cin >> posit;
+    std::cin >> positEmp;
     std::cout << "Hire date: ";
-    std::cin >> date;
+    std::cin >> dateEmp;
     std::cout << "Salary: ";
-    std::cin >> sal;
+    std::cin >> salEmp;
 
-    std::shared_ptr<Person> newEmployee = std::make_shared<Employee>(firstName, lastName, email, phoneNumber, id, cnp, addr, posit, date, std::stoi(sal));
+    std::shared_ptr<Person> newEmployee = std::make_shared<Employee>(firstNameEmp, lastNameEmp, emailEmp, phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp, dateEmp, std::stoi(salEmp));
     Persons.push_back(newEmployee);
     std::ofstream c("angajati.in", std::ios::app);
     if (c) {
-    c <<lastName << '\n' << firstName << '\n' << email << '\n' << phoneNumber <<'\n'<< id<<'\n' << cnp<<'\n'
-    <<addr<<'\n' <<posit<<'\n' <<date<<'\n' <<sal<< '\n';
+    c <<lastNameEmp << '\n' << firstNameEmp << '\n' << emailEmp << '\n' << phoneNumberEmp <<'\n'<< id<<'\n' << cnpEmp<<'\n'
+    <<addrEmp<<'\n' <<positEmp<<'\n' <<dateEmp<<'\n' <<salEmp<< '\n';
     c.close();
     } else {
     std::cerr << "Can't find the file" << std::endl;

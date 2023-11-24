@@ -15,27 +15,27 @@ void Customer::display() {
 }
 void Customer::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Customer insert " << std::endl;
-    std::string lastName, firstName, email, phoneNumber, id, registrationDate;
+    std::string lastNameCust, firstNameCust, emailCust, phoneNumberCust, idCust, registrationDateCust;
     std::cout << "Last name: ";
-    std::cin >> lastName;
+    std::cin >> lastNameCust;
     std::cout << "First name: ";
-    std::cin >> firstName;
+    std::cin >> firstNameCust;
     std::cout << "Email: ";
-    std::cin >> email;
+    std::cin >> emailCust;
     std::cout << "Phone number: ";
-    std::cin >> phoneNumber;
+    std::cin >> phoneNumberCust;
     std::cout << "ID: ";
-    std::cin >> id;
+    std::cin >> idCust;
     std::cout << "Registration date: ";
-    std::cin >> registrationDate;
+    std::cin >> registrationDateCust;
 
 /* Customer* newCustomer = new Customer(firstName, lastName, email, phoneNumber, id, registrationDate);
  Persons.push_back(newCustomer);*/
-    std::shared_ptr<Person> newCustomer = std::make_shared<Customer>(firstName, lastName, email, phoneNumber, id, registrationDate);
+    std::shared_ptr<Person> newCustomer = std::make_shared<Customer>(firstNameCust, lastNameCust, emailCust, phoneNumberCust, idCust, registrationDateCust);
     Persons.push_back(newCustomer);
     std::ofstream c("client.in", std::ios::app);
     if (c) {
-        c << '\n' <<lastName << '\n' << firstName << '\n' << email << '\n' << phoneNumber <<'\n'<< id<<'\n' << registrationDate << '\n';
+        c << '\n' <<lastNameCust << '\n' << firstNameCust << '\n' << emailCust << '\n' << phoneNumberCust <<'\n'<< idCust<<'\n' << registrationDateCust << '\n';
     c.close();}
     else {
     std::cerr << "Can't find the file" << std::endl;}

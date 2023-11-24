@@ -14,32 +14,31 @@ void Sponsor::display(){
 }
 void Sponsor::insertPerson(std::vector<std::shared_ptr<Person>> &Persons){
     std::cout << "Sponsor insert" << std::endl;
-    std::string lastName, firstName, email, phoneNumber, id, donType, donDate, donquant ;
+    std::string lastNameSpo, firstNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo ;
     std::cout << "Last name: ";
-    std::cin >> lastName;
+    std::cin >> lastNameSpo;
     std::cout << "First name: ";
-    std::cin >> firstName;
+    std::cin >> firstNameSpo;
     std::cout << "Email: ";
-    std::cin >> email;
+    std::cin >> emailSpo;
     std::cout << "Phone number: ";
-    std::cin >> phoneNumber;
+    std::cin >> phoneNumberSpo;
     std::cout << "ID: ";
-    std::cin >> id;
+    std::cin >> idSpo;
     std::cout << "Donation type: ";
-    std::cin >> donType;
+    std::cin >> donTypeSpo;
     std::cout << "Donation date: ";
-    std::cin >> donDate;
+    std::cin >> donDateSpo;
     std::cout << "Donation quant: ";
-    std::cin >> donquant;
+    std::cin >> donquantSpo;
 
-    std::shared_ptr<Person> newSponsor = std::make_shared<Sponsor>(firstName, lastName, email, phoneNumber, id, donType, donDate, donquant);
+    std::shared_ptr<Person> newSponsor = std::make_shared<Sponsor>(firstNameSpo, lastNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo);
     Persons.push_back(newSponsor);
     std::ofstream c("sponsor.in", std::ios::app);
     if (c) {
-    c <<lastName << '\n' << firstName << '\n' << email << '\n' << phoneNumber <<'\n'<< id<<'\n' << donType<<'\n' << donDate<<'\n' <<donquant<< '\n';
+    c <<lastNameSpo << '\n' << firstNameSpo << '\n' << emailSpo << '\n' << phoneNumberSpo <<'\n'<< idSpo<<'\n' << donTypeSpo<<'\n' << donDateSpo<<'\n' <<donquantSpo<< '\n';
     c.close();
     } else {
     std::cerr << "Can't find the file" << std::endl;
     }
-
 }

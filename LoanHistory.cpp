@@ -11,22 +11,22 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, const s
 {
     ///interactive part, with console
     std::ofstream f("loanHistory.in",std::ios::app);
-    std:: string firstName,lastName, Title;
+    std:: string firstNameCust,lastNameCust, bookTitle;
     std::cout<<"Customer name: "<<std::endl;
     std::cout<<"Customer last name:";
-    std::getline(std::cin, lastName);
+    std::getline(std::cin, lastNameCust);
     std::cout<<"Customer first name:";
-    std::getline(std::cin, firstName);
+    std::getline(std::cin, firstNameCust);
     std::cout<<"Book title: ";
-    std::getline(std::cin, Title);
+    std::getline(std::cin, bookTitle);
 
     ///finding out if the customer and the book already exists, if not we can't proceed with the loan
     auto foundCustomer = std::find_if(Persons.begin(), Persons.end(),
                                       [&](const std::shared_ptr<Person> &p) {
-                                          return p->getFirstName() == firstName && p->getLastName() == lastName;
+                                          return p->getFirstName() == firstNameCust && p->getLastName() == lastNameCust;
                                       });
     auto foundBook = std::find_if(books.begin(), books.end(),
-                                  [&](const Book &c) { return c.getTitle() == Title; });
+                                  [&](const Book &c) { return c.getTitle() == bookTitle; });
     ///Finding the current date and adding it automatically into the file
     auto current =std:: chrono::system_clock::now();
     auto now_timet = std::chrono::system_clock::to_time_t(current);
@@ -36,7 +36,7 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, const s
     int day=date->tm_mday;
     if (foundCustomer != Persons.end() && foundBook != books.end())
     {
-        f<<lastName<<"\n"<<firstName<<"\n"<<Title<<"\n"<<day<<" "<<month<<" "<<year<<"\n";
+        f<<lastNameCust<<"\n"<<firstNameCust<<"\n"<<bookTitle<<"\n"<<day<<" "<<month<<" "<<year<<"\n";
     }
     else if (foundCustomer==Persons.end())
     {
@@ -54,7 +54,7 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, const s
         // Perform downcast
         std::shared_ptr<Customer> customerDowncast = std::dynamic_pointer_cast<Customer>(customer);
         customerDowncast->insertPerson(Persons);
-        f<<lastName<<"\n"<<firstName<<"\n"<<Title<<"\n"<<day<<" "<<month<<" "<<year<<"\n";
+        f<<lastNameCust<<"\n"<<firstNameCust<<"\n"<<bookTitle<<"\n"<<day<<" "<<month<<" "<<year<<"\n";
 
     }
     else
