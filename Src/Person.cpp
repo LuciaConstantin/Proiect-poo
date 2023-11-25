@@ -41,3 +41,13 @@ void Person::search (const std::vector<Person *> &Persons) {
     if (ok == 0)
         std::cout << "This person is not in the database" << std::endl;
 }
+int Person::searchPerson(std::vector<std::shared_ptr<Person>> &Persons, std::string LastName, std::string FirstName)
+{
+    auto foundCustomer = std::find_if(Persons.begin(), Persons.end(),
+                                      [&](const std::shared_ptr<Person> &p) {
+                                          return p->getFirstName() == FirstName && p->getLastName() == LastName;});
+    if(foundCustomer != Persons.end())
+        return 0;
+    else
+        return 1;
+}

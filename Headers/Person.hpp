@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-
+#include <algorithm>
 
 class Person {
 protected:
@@ -28,6 +28,7 @@ public:
 
     virtual void display();
 
+    int searchPerson(std::vector<std::shared_ptr<Person>> &Persons, std::string LastName, std::string FirstName);
     void search(const std::vector<Person *> &Persons);
     virtual void insertPerson(std::vector<std::shared_ptr<Person>> &Persons) = 0;
 

@@ -4,10 +4,11 @@
 
 #ifndef OOP_BOOK_HPP
 #define OOP_BOOK_HPP
+
 #include <iostream>
 #include <vector>
 
-class Book {
+class Book{
 private:
     std::string title;
     std::string author;
@@ -18,25 +19,28 @@ private:
     std::string publishingHouse;
     int publishingYear = 0;///optional
     int ID;
-    static int counter;
+    static int  counter;
 
 public:
     Book() = default;
-    ~Book() = default;
-    const std::string &getTitle() const;
-   /*Book(const std::string &title, const std::string &author, const std::string &domain,
-         const std::string &availability, const std::string &isbn, const std::string &language,
-         const std::string &publishingHouse, int publishingYear);*/
-   Book(const std::string& title, const std::string& author, const std::string& domain,
-        const std::string& availability, const std::string& isbn, const std::string& language,
-        const std::string& publishingHouse, int publishingYear);
 
-    friend std::ostream &operator<<(std::ostream &os, const Book &Book);
+    ~Book() = default;
+
+    const std::string &getTitle() const;
+
+    Book(const std::string &title,const std::string &author,const std::string &domain,
+         const std::string &availability,const std::string &isbn,const std::string &language,
+         const std::string &publishingHouse,int publishingYear);
+
+    //void setAvailability(const std::string &ava) const;
+    const std::string &getAvailability() const;
+    friend std::ostream &operator<<(std::ostream &os,const Book &Book);
     void static bookInfo(const std::vector<Book> &books);
     void static booksAuthor(const std::vector<Book> &books);
     Book(const Book &c);
     Book &operator=(const Book &Book);
 
+    void setAvailability(const std::string &avail);
 };
 
 

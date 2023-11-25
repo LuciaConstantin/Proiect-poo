@@ -95,3 +95,15 @@ Book& Book::operator=(const Book &Book) {
     ID = Book.ID;
     return *this;
 }
+
+const std::string &Book::getAvailability() const {
+    return availability;
+}
+
+void Book::setAvailability(const std::string &avail){
+    Book::availability = avail;
+}
+
+/*void Book::setAvailability(const std::string &ava) const{
+    Book::availability = &ava;
+}*/

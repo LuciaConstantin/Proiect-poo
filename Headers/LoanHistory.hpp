@@ -6,6 +6,7 @@
 #define OOP_LOANHISTORY_HPP
 #include <iostream>
 #include <memory>
+#include <fstream>
 #include "Book.hpp"
 #include "Person.hpp"
 #include "Customer.hpp"
@@ -27,9 +28,14 @@ public:
 
     LoanHistory()=default;
     ~LoanHistory()=default;
-    void addLoan(std::vector<std::shared_ptr<Person>> &Persons, const std::vector<Book> &books);
+    void addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::vector<Book> &books);
+    void returnBook(std::vector<Book> &books);
+    void display();
+
+    const std::string &getReturnDate() const;
 
 
+    std::shared_ptr<Person> getCustomers() const;
 };
 
 

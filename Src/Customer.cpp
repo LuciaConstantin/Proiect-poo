@@ -35,7 +35,8 @@ void Customer::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     Persons.push_back(newCustomer);
     std::ofstream c("client.in", std::ios::app);
     if (c) {
-        c << '\n' <<lastNameCust << '\n' << firstNameCust << '\n' << emailCust << '\n' << phoneNumberCust <<'\n'<< idCust<<'\n' << registrationDateCust << '\n';
+        c<<std::endl;
+        c <<lastNameCust << '\n' << firstNameCust << '\n' << emailCust << '\n' << phoneNumberCust <<'\n'<< idCust<<'\n' << registrationDateCust;
     c.close();}
     else {
     std::cerr << "Can't find the file" << std::endl;}

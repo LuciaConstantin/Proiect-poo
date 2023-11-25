@@ -48,12 +48,13 @@ int main() {
 
     for (const Book &cart: books)
         std::cout << cart << std::endl;
+    ////--------------------------------------------------------
     std::ifstream c("client.in");
     if (!c) {
         std::cerr << "Can't open the file " << std::endl;
         return 1;
     }
-    ////--------------------------------------------------------
+
     std::string lastName, firstName, email, phoneNumber, id, date;
    // std::vector<shared_ptr<Person>> Persons;
     std::vector<std::shared_ptr<Person>> p1;
@@ -145,7 +146,8 @@ int main() {
         person->display();
     }*/
     LoanHistory lh;
-    //lh.addLoan(p1,books);
+   // lh.addLoan(p1,books);
+   // lh.addLoan(p1,books);
     /*Employee emp;
     std::vector<std::shared_ptr<Employee>> employees;
     for (const auto& personPtr : p2)
@@ -159,5 +161,82 @@ int main() {
     }
     std::cout<<std::endl<<"Merge in continuare"<<std::endl;*/
 
+    /*std::ifstream l("loanHistory.in");
+    std::vector<std::shared_ptr<LoanHistory>> loanHistories;
+    std::vector<std::shared_ptr<Person>> persons; // Declarați vectorul de Persons
+    while (!l.eof()) {
+        std::string lastName, firstName, bookTitle, loanDate, returnDate;
+
+        // Citeste datele pentru un împrumut
+        getline(l, lastName);
+        getline(l, firstName);
+        getline(l, bookTitle);
+        getline(l, loanDate);
+        getline(l, returnDate);
+
+        // Cauta persoana in vectorul de Persons
+        auto personIterator = std::find_if(persons.begin(), persons.end(),
+                                           [&](const std::shared_ptr<Person> &p1) {
+                                               return p1->getLastName() == lastName && p1->getFirstName() == firstName;
+                                           });
+
+        // Cauta cartea in vectorul de books
+        auto bookIterator = std::find_if(books.begin(), books.end(),
+                                         [&](const Book &books) {
+                                             return books.getTitle() == bookTitle;
+                                         });
+
+        // Verifica daca persoana si cartea au fost gasite
+        if (personIterator != persons.end() && bookIterator != books.end()) {
+            // Creeaza un obiect LoanHistory si adauga-l in vectorul de loanHistories
+            loanHistories.push_back(std::make_shared<LoanHistory>(loanDate, returnDate, std::make_shared<Book>(*bookIterator),
+                                                                  *personIterator));
+        } else {
+            std::cerr << "Eroare: Persoana sau carte negasita." << std::endl;
+        }
+    }*/
+    /*std::ifstream l("loanHistory.in");
+    std::vector<std::shared_ptr<LoanHistory>> loanHistories;
+   // std::vector<std::shared_ptr<Person>> persons; // Declarați vectorul de Persons
+    std::string lN, fN, bookTitle, loanDate, returnDate;
+    while (getline(l, lN)) {
+        getline(l, fN);
+        getline(l, bookTitle);
+        getline(l, loanDate);
+        getline(l, returnDate);
+
+        // Cauta persoana in vectorul de Persons
+        auto personIterator = std::find_if(p1.begin(), p1.end(),
+                                           [&](const std::shared_ptr<Person> &p) {
+                                               return p->getLastName() == lastName && p->getFirstName() == firstName;
+                                           });
+
+        // Cauta cartea in vectorul de books
+        auto bookIterator = std::find_if(books.begin(), books.end(),
+                                         [&](const Book &b) {
+                                             return b.getTitle() == bookTitle;
+                                         });
+
+        // Verifica daca persoana si cartea au fost gasite
+        if (personIterator != p1.end() && bookIterator != books.end()) {
+            // Creeaza un obiect LoanHistory si adauga-l in vectorul de loanHistories
+            loanHistories.push_back(std::make_shared<LoanHistory>(loanDate, returnDate, std::make_shared<Book>(*bookIterator),
+                                                                  *personIterator));
+        } else {
+            std::cerr << "Eroare: Persoana sau carte negasita." << std::endl;
+        }
+        getline(l,loanDate);
+    }
+    l.close();
+    for (const auto &loan : loanHistories) {
+        if (loan) { // Verifică dacă obiectul este nenul
+            loan->display();
+        } else {
+            std::cerr << "Error: Null pointer in loanHistories." << std::endl;
+        }
+    }*/
+    lh.returnBook(books);
+    for (const Book &cart: books)
+        std::cout << cart << std::endl;
     return 0;
 }
