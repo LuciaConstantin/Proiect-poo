@@ -7,14 +7,21 @@
 #include <vector>
 #include <string>
 
+int Book::counter = 0;
 
 const std::string &Book::getTitle() const {
     return title;
 }
-Book::Book(const std::string &title, const std::string &author, const std::string &domain,
+/*Book::Book(const std::string &title, const std::string &author, const std::string &domain,
      const std::string &availability, const std::string &isbn, const std::string &language,
      const std::string &publishingHouse, int publishingYear, const std::string &ID) : title(title),author(author),domain(domain),availability(availability),ISBN(isbn),language(language),
-                                                                                      publishingHouse(publishingHouse),publishingYear(publishingYear),ID(ID) { }
+                                                                                      publishingHouse(publishingHouse),publishingYear(publishingYear),id(++counter) { }*/
+Book::Book(const std::string& title, const std::string& author, const std::string& domain,
+           const std::string& availability, const std::string& isbn, const std::string& language,
+           const std::string& publishingHouse, int publishingYear)
+        : title(title), author(author), domain(domain), availability(availability),
+          ISBN(isbn), language(language), publishingHouse(publishingHouse),
+          publishingYear(publishingYear), ID(++counter) {}
 
 std::ostream &operator<<(std::ostream &os, const Book &book) {
     os << "title: " << book.title << " author: " << book.author << " domain: " << book.domain

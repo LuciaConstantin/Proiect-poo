@@ -14,8 +14,9 @@
 #include "Employee.hpp"
 #include "Sponsor.hpp"
 #include "LoanHistory.hpp"
+#include "Exceptions.hpp"
 ///library management system
-///-------------------------------------------------------trebuie sa modific functia modifemployee
+
 
 
 int main() {
@@ -36,16 +37,17 @@ int main() {
         getline(f, publishingHouse);
         f >> publishingYear;
         f.ignore();//pt endline
-        getline(f, ID);
+       // getline(f, ID);
 
-        Book newBook(title, author, domain, availability, ISBN, language, publishingHouse, publishingYear, ID);
+        Book newBook(title, author, domain, availability, ISBN, language, publishingHouse, publishingYear);
         books.push_back(newBook);
+        getline (f,ID);
 
     }
     f.close();
 
-    /*for (const Book &cart: books)
-        std::cout << cart << std::endl;*/
+    for (const Book &cart: books)
+        std::cout << cart << std::endl;
     std::ifstream c("client.in");
     if (!c) {
         std::cerr << "Can't open the file " << std::endl;
@@ -97,6 +99,7 @@ int main() {
         a.ignore();
         std::shared_ptr<Person> newEmployee=std::make_shared<Employee>(lastNameEmp, firstNameEmp, emailAng, phoneNr, id_emp, CNP, address, position, data_ang,
                              salary);
+
         p2.push_back(newEmployee);
         getline(a,id_emp);
     }
@@ -126,6 +129,7 @@ int main() {
 
         std::shared_ptr<Person> newSponsor=std::make_shared<Sponsor>(lastNamespon, firstNamespon, emailspon, phoneNr, idspon,dontype,dondate,donquant);
         p3.push_back(newSponsor);
+
         getline(s, id);
 
     }
@@ -141,7 +145,19 @@ int main() {
         person->display();
     }*/
     LoanHistory lh;
-    lh.addLoan(p1,books);
+    //lh.addLoan(p1,books);
+    /*Employee emp;
+    std::vector<std::shared_ptr<Employee>> employees;
+    for (const auto& personPtr : p2)
+        if (auto employeePtr = std::dynamic_pointer_cast<Employee>(personPtr))
+            employees.push_back(employeePtr);
+    try{
+    emp.modifEmployee(employees);
+    }
+    catch(std::exception& e) {
+        std::cout << e.what() << '\n';
+    }
+    std::cout<<std::endl<<"Merge in continuare"<<std::endl;*/
 
     return 0;
 }

@@ -3,22 +3,26 @@
 //
 
 #include "Employee.hpp"
+#include "Exceptions.hpp"
 #include <fstream>
 #include <string>
 #include <limits>
+#include <stdexcept>
+
 
 Employee::Employee(const std::string &firstName, const std::string &lastName, const std::string &email,
          const std::string &telephoneNumber, const std::string &id, const std::string &cnp,
          const std::string &address, const std::string &position, const std::string &hireDate, int salary)
         : Person(firstName, lastName, email, telephoneNumber, id), CNP(cnp), address(address), position(position),
-          hireDate(hireDate), salary(salary) {}
+          hireDate(hireDate), salary(salary) { }
+
 
 void Employee::display(){
     Person::display();
     std::cout << " CNP: " << CNP << " Address: " << address << " Position: " << position << " Hire date: "
     << hireDate << "Salary: "<<salary <<std::endl;
 }
-void Employee::modifEmployee(std::vector<Employee> &employees) {
+void Employee::modifEmployee(std::vector<std::shared_ptr<Employee>> &employees) {
     std::string dataEmp, infoEmp, nameEmp;
     std::cout << "Employee data modification" << std::endl;
     std::cout << "Last name: ";
@@ -29,33 +33,42 @@ void Employee::modifEmployee(std::vector<Employee> &employees) {
     std::cin >> infoEmp;
     int i = 0;
     bool ok = 0;
-    for (Employee &ang: employees) {
+    for (const auto &emp: employees)
+   {
         {
-            if (ang.lastName == nameEmp) {
+            if (emp->lastName == nameEmp) {
                 ok = 1;
                 break;
             }
         }
         i++;
     }
-
     if (ok == 1) {
-        if ("address" == dataEmp)
-            employees[i].address = infoEmp;
-        else if ("email" == dataEmp)
-            employees[i].email = infoEmp;
-        else if ("phoneNumber" == dataEmp)
-            employees[i].telephoneNumber = infoEmp;
+        if ( "address" == dataEmp )
+            employees[i]->address = infoEmp;
+        else if ( "email" == dataEmp )
+            employees[i]->email = infoEmp;
+        else if ( "phoneNumber" == dataEmp ) {
+            if ( infoEmp.length() != 10 )
+                throw exceptionPhoneNumber();
+            else
+                employees[i]->telephoneNumber = infoEmp;
+        }
         else if ("salary" == dataEmp)
-            employees[i].salary = std::stoi(infoEmp);
+        {
+            int sal=std::stoi(infoEmp);
+            if(sal< 2300)
+                throw exceptionSalary();
+            else
+                employees[i]->salary = sal;}
         else
             std::cout << "The data " << dataEmp << " can't be modified " << std::endl;
     } else
         std::cout << "The employee doesn't exist ";
     std::ofstream f("angajati.in");
-    for (const Employee &ang: employees)
-        f << ang.lastName << std::endl << ang.firstName << std::endl << ang.email<< std::endl <<ang.telephoneNumber<< std::endl
-          <<ang.id<< std::endl <<ang.CNP << std::endl << ang.address<< std::endl <<ang.position<< std::endl <<ang.hireDate<< std::endl <<ang.salary<< std::endl;
+    for (const auto &ang: employees)
+        f << ang->lastName << std::endl << ang->firstName << std::endl << ang->email<< std::endl <<ang->telephoneNumber<< std::endl
+          <<ang->id<< std::endl <<ang->CNP << std::endl << ang->address<< std::endl <<ang->position<< std::endl <<ang->hireDate<< std::endl <<ang->salary<< std::endl<<'\n';
 
     f.close();
 }

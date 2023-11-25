@@ -102,7 +102,9 @@ add_executable(${PROJECT_NAME} main.cpp
         Sponsor.cpp
         Sponsor.hpp
         LoanHistory.cpp
-        LoanHistory.hpp)
+        LoanHistory.hpp
+        Exceptions.cpp
+        Exceptions.hpp)
 
 ###############################################################################
 

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include "Exceptions.hpp"
 
 const std::string &Person::getFirstName() const {
     return firstName;
@@ -16,7 +17,8 @@ const std::string &Person::getLastName() const {
 Person::Person(const std::string &firstName, const std::string &lastName, const std::string &email,
        const std::string &telephoneNumber, const std::string &id) : firstName(firstName), lastName(lastName),
                                                                     email(email),
-                                                                    telephoneNumber(telephoneNumber), id(id) { }
+                                                                    telephoneNumber(telephoneNumber), id(id)
+                                                                    {}
 void Person::display() {
     std::cout << "Last name: " << lastName << " First name: " << firstName << " Email: " << email
               << " Telephone number: " << telephoneNumber << " ID: " << id;

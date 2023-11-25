@@ -4,6 +4,7 @@
 
 #include "LoanHistory.hpp"
 
+
 LoanHistory::LoanHistory(const std::string &loanDate, const std::string &returnDate, const std::shared_ptr<Book> &book,
             const std::shared_ptr<Person> &customer) : loanDate(loanDate), returnDate(returnDate), book(book),
                                                        customer(customer) {}
@@ -40,18 +41,8 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, const s
     }
     else if (foundCustomer==Persons.end())
     {
-        /*std::cout<<"A intrat in if";
-        std::shared_ptr<Person> newCustomer = std::make_shared<Customer>();
-        Persons.push_back(newCustomer);
-
-        // Perform downcast
-        std::shared_ptr<Customer> customerDowncast = std::dynamic_pointer_cast<Customer>(newCustomer);
-        customerDowncast->insertPerson(Persons);
-        f<<lastName<<"\n"<<firstName<<"\n"<<Title<<"\n"<<day<<" "<<month<<" "<<year<<"\n";*/
         customer = std::make_shared<Customer>();
         Persons.push_back(customer);
-
-        // Perform downcast
         std::shared_ptr<Customer> customerDowncast = std::dynamic_pointer_cast<Customer>(customer);
         customerDowncast->insertPerson(Persons);
         f<<lastNameCust<<"\n"<<firstNameCust<<"\n"<<bookTitle<<"\n"<<day<<" "<<month<<" "<<year<<"\n";
