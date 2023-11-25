@@ -112,7 +112,7 @@ void LoanHistory::returnBook(std::vector<Book> &books){
     int month = date->tm_mon + 1;
     int day = date->tm_mday;
 
-    int ok;
+    int ok=1;
     std::ifstream l("loanHistory.in");
     std::string firstNameL,lastNameL, bookTitleL, loanDateL, returnDateL;
     std::string dateOfreturn;
