@@ -8,13 +8,13 @@
 #include <ctime>
 #include <memory>
 #include <algorithm>
-#include "Book.hpp"
-#include "Person.hpp"
-#include "Customer.hpp"
-#include "Employee.hpp"
-#include "Sponsor.hpp"
-#include "LoanHistory.hpp"
-#include "Exceptions.hpp"
+#include "Headers/Book.hpp"
+#include "Headers/Person.hpp"
+#include "Headers/Customer.hpp"
+#include "Headers/Employee.hpp"
+#include "Headers/Sponsor.hpp"
+#include "Headers/LoanHistory.hpp"
+#include "Headers/Exceptions.hpp"
 ///library management system
 
 

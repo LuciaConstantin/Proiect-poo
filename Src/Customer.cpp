@@ -2,7 +2,7 @@
 // Created by Lucia on 11/24/2023.
 //
 
-#include "Customer.hpp"
+#include "../Headers/Customer.hpp"
 #include <fstream>
 
 Customer::Customer(const std::string &firstName, const std::string &lastName, const std::string &email,

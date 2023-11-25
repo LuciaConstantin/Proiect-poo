@@ -2,7 +2,7 @@
 // Created by Lucia on 11/24/2023.
 //
 
-#include "Sponsor.hpp"
+#include "../Headers/Sponsor.hpp"
 
 Sponsor::Sponsor(const std::string &firstName, const std::string &lastName, const std::string &email,
         const std::string &telephoneNumber, const std::string &id, const std::string &donationType,

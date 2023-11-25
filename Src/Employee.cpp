@@ -2,8 +2,8 @@
 // Created by Lucia on 11/24/2023.
 //
 
-#include "Employee.hpp"
-#include "Exceptions.hpp"
+#include "../Headers/Employee.hpp"
+#include "../Headers/Exceptions.hpp"
 #include <fstream>
 #include <string>
 #include <limits>

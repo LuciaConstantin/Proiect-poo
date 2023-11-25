@@ -2,7 +2,7 @@
 // Created by Lucia on 11/24/2023.
 //
 
-#include "LoanHistory.hpp"
+#include "../Headers/LoanHistory.hpp"
 
 
 LoanHistory::LoanHistory(const std::string &loanDate, const std::string &returnDate, const std::shared_ptr<Book> &book,

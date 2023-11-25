@@ -2,11 +2,11 @@
 // Created by Lucia on 11/24/2023.
 //
 
-#include "Person.hpp"
+#include "../Headers/Person.hpp"
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "Exceptions.hpp"
+#include "../Headers/Exceptions.hpp"
 
 const std::string &Person::getFirstName() const {
     return firstName;
