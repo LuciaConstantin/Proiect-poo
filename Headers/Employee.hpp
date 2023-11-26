@@ -25,7 +25,7 @@ public:
              const std::string &address, const std::string &position, const std::string &hireDate, int salary);
 
     void display() override;
-    static void modifEmployee(std::vector<std::shared_ptr<Employee>> &employees);
+    static void modifEmployee(const std::vector<std::shared_ptr<Employee>> &employees);
     void insertPerson(std::vector<std::shared_ptr<Person>> &Persons)override;
 };
 

@@ -29,7 +29,7 @@ void Employee::display() {
               << hireDate << "Salary: " << salary << std::endl;
 }
 
-void Employee::modifEmployee(std::vector<std::shared_ptr<Employee>> &employees) {
+void Employee::modifEmployee(const std::vector<std::shared_ptr<Employee>> &employees) {
     std::string nameEmp;
     std::cout << "Enter the last name of the employee you want to modify: ";
     std::getline(std::cin, nameEmp);

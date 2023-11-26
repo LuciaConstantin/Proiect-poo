@@ -130,53 +130,7 @@ int main () {
     }
     s.close();
     std::cout << std::endl;
-////------------------------------sponsor----------------------------------------
-   /* Sponsor newSpon;
-    for (const auto &per: sponsors) {
-        per->display();
-    }
-    newSpon.insertPerson(sponsors);
-    std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;*/
 
-    ///--------------------------------loanHistory---------------------------------------------
-   /* LoanHistory lh;
-    lh.addLoan(customers, books);
-    lh.returnBook(books);
-////-------------------books-----------------------------------------------------
-    Book bk;
-    for (const Book &cart: books)
-        std::cout << cart << std::endl;
-    bk.bookInfo(books);
-    bk.booksAuthor(books);
-    bk.insertBook(books);
-    bk.changeBook(books);*/
-    ///---------------------customers---------------------------------
-    /*for (const auto &person: customers) {
-        person->display();
-    }
-    Customer cst;
-    cst.insertPerson(customers);
-    cst.searchPers(customers);
-    for (const auto &person: customers) {
-        person->display();
-    }*/
-
-    ///-----------------------employees-----------------------------------
-    /*Employee emp;
-    for (const auto &person: p2) {
-        person->display();
-    }
-    emp.insertPerson(p2);
-    std::vector<std::shared_ptr<Employee>> employees;
-    for (const auto &personPtr: p2)
-        if (auto employeePtr = std::dynamic_pointer_cast<Employee>(personPtr))
-            employees.push_back(employeePtr);
-    try {
-        emp.modifEmployee(employees);
-    }
-    catch (std::exception &e) {
-        std::cout << e.what() << '\n';
-    }*/
     Sponsor newSpon;
     LoanHistory lh;
     Book bk;
