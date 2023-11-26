@@ -23,7 +23,7 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
         std::cout << "10. Search Customer" << std::endl;
         std::cout << "11. Display Employees" << std::endl;
         std::cout << "12. Add Employee" << std::endl;
-        std::cout << "13. Modify Employee" << std::endl;
+        std::cout << "13. Insert sponsor" << std::endl;
         std::cout << "0. Exit" << std::endl;
 
         std::cout << "Enter your choice: ";
@@ -76,6 +76,8 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
             case 12:
                 emp.insertPerson(Employees);
                 break;
+            case 13:
+                newSpon.insertPerson(Sponsors);
             case 0:
                 std::cout << "Exiting program." << std::endl;
                 break;
