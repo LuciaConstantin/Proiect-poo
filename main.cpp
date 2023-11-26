@@ -128,7 +128,7 @@ int main () {
     std::cout << std::endl;
 
 ////-------------------books-----------------------------------------------------
-    Book bk;
+   /* Book bk;
     for (const Book &cart: books)
         std::cout << cart << std::endl;
     bk.bookInfo(books);
@@ -170,7 +170,7 @@ int main () {
     std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
     for (const auto &person: sponsors) {
         person->display();
-    }
+    }*/
     ///--------------------------------loanHistory---------------------------------------------
     LoanHistory lh;
     lh.addLoan(customers, books);
