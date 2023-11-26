@@ -24,13 +24,14 @@ Book::Book(const std::string& title, const std::string& author, const std::strin
           ISBN(isbn), language(language), publishingHouse(publishingHouse),
           publishingYear(publishingYear), ID(++counter) {}
 
-std::ostream &operator<<(std::ostream &os, const Book &book) {
+/*std::ostream &operator<<(std::ostream &os, const Book &book) {
     os << "title: " << book.title << " author: " << book.author << " domain: " << book.domain
        << " availability: " << book.availability << " ISBN: " << book.ISBN << " language: " << book.language
        << " publishingHouse: " << book.publishingHouse << " publishingYear: " << book.publishingYear << " ID: "
        << book.ID << std::endl;
     return os;
-}
+}*/
+
 void Book::bookInfo(const std::vector<Book> &books) {
     std::string bookTitle;
     std::cout << "For which Book do you want to find out the information: ";
@@ -61,6 +62,14 @@ void Book::bookInfo(const std::vector<Book> &books) {
     std::cout<<std::endl;
 
 }
+
+std::ostream &operator<<(std::ostream &os, const Book &book) {
+    os << "title: " << book.title << " author: " << book.author << " domain: " << book.domain << " availability: "
+       << book.availability << " ISBN: " << book.ISBN << " language: " << book.language << " publishingHouse: "
+       << book.publishingHouse << " publishingYear: " << book.publishingYear << " ID: " << book.ID;
+    return os;
+}
+
 void Book::booksAuthor(const std::vector<Book> &books) {
     std::cout << "Search the books based on the author " << std::endl;
     std::string authorName;
@@ -84,7 +93,7 @@ Book::Book(const Book &c)
         : title(c.title), author(c.author), domain(c.domain), availability(c.availability),
           ISBN(c.ISBN), language(c.language), publishingHouse(c.publishingHouse),
           publishingYear(c.publishingYear),
-          ID(c.ID) {
+          ID(c.ID){
 }
 Book& Book::operator= (const Book &Book) {
     title = Book.title;
@@ -96,7 +105,7 @@ Book& Book::operator= (const Book &Book) {
     publishingHouse = Book.publishingHouse;
     publishingYear = Book.publishingYear;
     ID = Book.ID;
-    counter = Book.counter;
+   // counter = Book.counter;
     return *this;
 }
 

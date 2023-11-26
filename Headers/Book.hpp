@@ -34,8 +34,7 @@ public:
 
 
     const std::string &getAvailability() const;
-    friend std::ostream &operator<<(std::ostream &os,const Book &Book);
-    void static bookInfo(const std::vector<Book> &books);
+        void static bookInfo(const std::vector<Book> &books);
     void static booksAuthor(const std::vector<Book> &books);
 
     Book(const Book &c);
@@ -48,6 +47,8 @@ public:
 
     void setPublishingYear(int publishingyear);
     void insertBook(std::vector<Book> & books);
+
+    friend std::ostream &operator<<(std::ostream &os, const Book &book);
 };
 
 
