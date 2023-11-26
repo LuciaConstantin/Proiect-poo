@@ -109,8 +109,8 @@ void Book::setIsbn(const std::string &isbn) {
     ISBN = isbn;
 }
 
-void Book::setPublishingYear(int publishingYear) {
-    Book::publishingYear = publishingYear;
+void Book::setPublishingYear(int publishingyear) {
+    Book::publishingYear = publishingyear;
 }
 
 ///this function is used to change the book with a new one, the new book is identical with the one that was changed

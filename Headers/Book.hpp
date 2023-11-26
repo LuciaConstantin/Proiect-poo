@@ -46,7 +46,7 @@ public:
 
     void setIsbn(const std::string &isbn);
 
-    void setPublishingYear(int publishingYear);
+    void setPublishingYear(int publishingyear);
     void insertBook(std::vector<Book> & books);
 };
 

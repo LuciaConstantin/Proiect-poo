@@ -163,7 +163,7 @@ int main () {
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
     }
-    /*emp.insertPerson(p2);
+    emp.insertPerson(p2);
     ////------------------------------sponsor----------------------------------------
     Sponsor newSpon;
     newSpon.insertPerson(sponsors);
@@ -174,7 +174,7 @@ int main () {
     ///--------------------------------loanHistory---------------------------------------------
     LoanHistory lh;
     lh.addLoan(customers, books);
-    lh.returnBook(books);*/
+    lh.returnBook(books);
 
 
     return 0;
