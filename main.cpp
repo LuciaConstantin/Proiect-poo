@@ -143,8 +143,8 @@ int main () {
     for (const Book &cart: books)
         std::cout << cart << std::endl;
     bk.bookInfo(books);
-   /* bk.booksAuthor(books);
-    bk.insertBook(books);
+    bk.booksAuthor(books);
+   /* bk.insertBook(books);
     bk.changeBook(books);
     for (const Book &cart: books)
         std::cout << cart << std::endl;*/
