@@ -126,7 +126,13 @@ int main () {
     }
     s.close();
     std::cout << std::endl;
-
+////------------------------------sponsor----------------------------------------
+    Sponsor newSpon;
+    newSpon.insertPerson(sponsors);
+    std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
+    for (const auto &per: sponsors) {
+        per->display();
+    }
     ///--------------------------------loanHistory---------------------------------------------
     LoanHistory lh;
     lh.addLoan(customers, books);
@@ -151,13 +157,7 @@ int main () {
     for (const auto &person: customers) {
         person->display();
     }
-    ////------------------------------sponsor----------------------------------------
-    Sponsor newSpon;
-    newSpon.insertPerson(sponsors);
-    std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
-    for (const auto &per: sponsors) {
-        per->display();
-    }
+
     ///-----------------------employees-----------------------------------
     /*Employee emp;
     for (const auto &person: p2) {
