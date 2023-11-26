@@ -42,9 +42,9 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
     std::getline(std::cin, bookTitle);
 
     ///finding out if the customer and the book already exists, if not we can't proceed with the loan
-   /* auto foundCustomer = std::find_if(Persons.begin(), Persons.end(),
+    auto foundCustomer = std::find_if(Persons.begin(), Persons.end(),
                                       [&](const std::shared_ptr<Person> &p) {
-                                          return p->getFirstName() == firstNameCust && p->getLastName() == lastNameCust;});*/
+                                          return p->getFirstName() == firstNameCust && p->getLastName() == lastNameCust;});
     auto foundBook = std::find_if(books.begin(), books.end(),
                                   [&](const Book &c) {
                                       return c.getTitle() == bookTitle;});///returns the an interator to the first correct value
@@ -65,16 +65,16 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
     int month_return = date_return->tm_mon + 1;
     int day_return = date_return->tm_mday;
 
-    int foundCustomer;
-    foundCustomer=customer->searchPerson(Persons,lastNameCust, firstNameCust);
+    /*int foundCustomer;
+    foundCustomer=customer->searchPerson(Persons,lastNameCust, firstNameCust);*/
 
-    if (foundCustomer == 0 && foundBook != books.end() && foundBook->getAvailability() == "disponibila") {
+    if (foundCustomer != Persons.end()  && foundBook != books.end() && foundBook->getAvailability() == "disponibila") {
         f<<std::endl;
         f <<lastNameCust << "\n" << firstNameCust << "\n" << bookTitle << "\n" << day_start << "." << month_start << "." << year_start<< "\n"<<
         day_return<<"."<<month_return<<"."<<year_return;
         foundBook->setAvailability("imprumutata");
     }
-    else if (foundCustomer ==1 && foundBook->getAvailability() == "disponibila") {
+    else if (foundCustomer == Persons.end() && foundBook->getAvailability() == "disponibila") {
         customer = std::make_shared<Customer>();
         Persons.push_back(customer);
         std::shared_ptr<Customer> customerDowncast = std::dynamic_pointer_cast<Customer>(customer);
@@ -92,6 +92,7 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
 
     f.close();
 }
+
 void LoanHistory::returnBook(std::vector<Book> &books){
     std::string lastNameCust, firstNameCust, bookTitle;
     std::cout<<"Book return"<<std::endl;
