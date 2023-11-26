@@ -155,8 +155,8 @@ int main () {
     Sponsor newSpon;
     newSpon.insertPerson(sponsors);
     std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
-    for (const auto &person: sponsors) {
-        person->display();
+    for (const auto &per: sponsors) {
+        per->display();
     }
     ///-----------------------employees-----------------------------------
     /*Employee emp;
