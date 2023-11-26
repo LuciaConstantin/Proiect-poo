@@ -19,7 +19,7 @@ private:
     std::string publishingHouse;
     int publishingYear = 0;///optional
     int ID;
-    static int  counter;
+    static int counter;
 
 public:
     Book() = default;

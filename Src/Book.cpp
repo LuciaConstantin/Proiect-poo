@@ -13,10 +13,7 @@ int Book::counter = 0;
 const std::string &Book::getTitle() const {
     return title;
 }
-/*Book::Book(const std::string &title, const std::string &author, const std::string &domain,
-     const std::string &availability, const std::string &isbn, const std::string &language,
-     const std::string &publishingHouse, int publishingYear, const std::string &ID) : title(title),author(author),domain(domain),availability(availability),ISBN(isbn),language(language),
-                                                                                      publishingHouse(publishingHouse),publishingYear(publishingYear),id(++counter) { }*/
+
 Book::Book(const std::string& title, const std::string& author, const std::string& domain,
            const std::string& availability, const std::string& isbn, const std::string& language,
            const std::string& publishingHouse, int publishingYear)
@@ -24,13 +21,7 @@ Book::Book(const std::string& title, const std::string& author, const std::strin
           ISBN(isbn), language(language), publishingHouse(publishingHouse),
           publishingYear(publishingYear), ID(++counter) {}
 
-/*std::ostream &operator<<(std::ostream &os, const Book &book) {
-    os << "title: " << book.title << " author: " << book.author << " domain: " << book.domain
-       << " availability: " << book.availability << " ISBN: " << book.ISBN << " language: " << book.language
-       << " publishingHouse: " << book.publishingHouse << " publishingYear: " << book.publishingYear << " ID: "
-       << book.ID << std::endl;
-    return os;
-}*/
+
 
 void Book::bookInfo(const std::vector<Book> &books) {
     std::string bookTitle;
@@ -89,11 +80,12 @@ void Book::booksAuthor(const std::vector<Book> &books) {
     std::cout<<std::endl;
 
 }
+
 Book::Book(const Book &c)
         : title(c.title), author(c.author), domain(c.domain), availability(c.availability),
           ISBN(c.ISBN), language(c.language), publishingHouse(c.publishingHouse),
           publishingYear(c.publishingYear),
-          ID(c.ID){
+          ID(++counter) {
 }
 Book& Book::operator= (const Book &Book) {
     title = Book.title;
