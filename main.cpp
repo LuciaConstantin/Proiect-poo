@@ -127,8 +127,12 @@ int main () {
     s.close();
     std::cout << std::endl;
 
+    ///--------------------------------loanHistory---------------------------------------------
+    LoanHistory lh;
+    lh.addLoan(customers, books);
+    lh.returnBook(books);
 ////-------------------books-----------------------------------------------------
-   /* Book bk;
+    Book bk;
     for (const Book &cart: books)
         std::cout << cart << std::endl;
     bk.bookInfo(books);
@@ -147,8 +151,15 @@ int main () {
     for (const auto &person: customers) {
         person->display();
     }
+    ////------------------------------sponsor----------------------------------------
+    Sponsor newSpon;
+    newSpon.insertPerson(sponsors);
+    std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
+    for (const auto &person: sponsors) {
+        person->display();
+    }
     ///-----------------------employees-----------------------------------
-    Employee emp;
+    /*Employee emp;
     for (const auto &person: p2) {
         person->display();
     }
@@ -162,19 +173,9 @@ int main () {
     }
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
-    }
-
-    ////------------------------------sponsor----------------------------------------
-    Sponsor newSpon;
-    newSpon.insertPerson(sponsors);
-    std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
-    for (const auto &person: sponsors) {
-        person->display();
     }*/
-    ///--------------------------------loanHistory---------------------------------------------
-    LoanHistory lh;
-    lh.addLoan(customers, books);
-    lh.returnBook(books);
+
+
 
 
     return 0;
