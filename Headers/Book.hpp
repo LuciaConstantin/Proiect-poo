@@ -9,7 +9,7 @@
 #include <vector>
 
 class Book{
-private:
+protected:
     std::string title;
     std::string author;
     std::string domain;

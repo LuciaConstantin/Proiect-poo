@@ -106,7 +106,9 @@ add_executable(${PROJECT_NAME} main.cpp
         Src/Exceptions.cpp
         Headers/Exceptions.hpp
         Src/Menu.cpp
-        Headers/Menu.hpp)
+        Headers/Menu.hpp
+        Src/RareBooks.cpp
+        Headers/RareBooks.hpp)
 
 ###############################################################################
 
