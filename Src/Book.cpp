@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <limits>
 
 int Book::counter = 0;
 
@@ -95,6 +96,7 @@ Book& Book::operator= (const Book &Book) {
     publishingHouse = Book.publishingHouse;
     publishingYear = Book.publishingYear;
     ID = Book.ID;
+    counter = Book.counter;
     return *this;
 }
 
@@ -125,13 +127,14 @@ void Book::changeBook(std::vector<Book> &books) {
             ++counter;
             newBook.ID = counter;
             std::cout<<"The new ISBN: ";
-            std::cin>>isbn_new;
+            getline(std::cin,isbn_new);
             newBook.setIsbn(isbn_new);
             std::cout<<"The new year: ";
             std::cin>>year;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             newBook.setPublishingYear(year);
-           // std::swap(book, newBook);///swap
-           book=newBook;
+            std::swap(book, newBook);///swap
+           //book=newBook;
         }
     }
     std::cout<<std::endl;

@@ -138,7 +138,7 @@ int main () {
     lh.addLoan(customers, books);
     lh.returnBook(books);
 ////-------------------books-----------------------------------------------------
-    /*Book bk;
+    Book bk;
     for (const Book &cart: books)
         std::cout << cart << std::endl;
     bk.bookInfo(books);
@@ -146,7 +146,7 @@ int main () {
     bk.insertBook(books);
     bk.changeBook(books);
     for (const Book &cart: books)
-        std::cout << cart << std::endl;*/
+        std::cout << cart << std::endl;
     ///---------------------customers---------------------------------
     /*for (const auto &person: customers) {
         person->display();
