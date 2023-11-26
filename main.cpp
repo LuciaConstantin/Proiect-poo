@@ -136,7 +136,7 @@ int main () {
     std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
 
     ///--------------------------------loanHistory---------------------------------------------
-    LoanHistory lh;
+   /* LoanHistory lh;
     lh.addLoan(customers, books);
     lh.returnBook(books);
 ////-------------------books-----------------------------------------------------
@@ -146,7 +146,7 @@ int main () {
     bk.bookInfo(books);
     bk.booksAuthor(books);
     bk.insertBook(books);
-    bk.changeBook(books);
+    bk.changeBook(books);*/
     ///---------------------customers---------------------------------
     /*for (const auto &person: customers) {
         person->display();
