@@ -78,6 +78,7 @@ int main () {
     int salary;
     std::vector<std::shared_ptr<Person>> p2;
 
+
     while (getline(a, firstNameEmp)) {
         try {
             getline(a, lastNameEmp);
