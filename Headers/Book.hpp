@@ -41,7 +41,14 @@ public:
     Book &operator=(const Book &Book);
 
     void setAvailability(const std::string &avail);
+    void changeBook(std::vector<Book> &books);
+
+    void setIsbn(const std::string &isbn);
+
+    void setPublishingYear(int publishingYear);
+    void insertBook(std::vector<Book> & books);
 };
+
 
 
 #endif //OOP_BOOK_HPP

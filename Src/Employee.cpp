@@ -11,10 +11,16 @@
 
 
 Employee::Employee(const std::string &firstName, const std::string &lastName, const std::string &email,
-         const std::string &telephoneNumber, const std::string &id, const std::string &cnp,
-         const std::string &address, const std::string &position, const std::string &hireDate, int salary)
+                   const std::string &telephoneNumber, const std::string &id, const std::string &cnp,
+                   const std::string &address, const std::string &position, const std::string &hireDate, int salary)
         : Person(firstName, lastName, email, telephoneNumber, id), CNP(cnp), address(address), position(position),
-          hireDate(hireDate), salary(salary) { }
+          hireDate(hireDate), salary(salary) {
+
+    if (cnp.length() != 13){
+        std::cout << "This employee " << lastName << " " << firstName;
+        throw exceptionCNP();
+        std::cout << '\n';}
+}
 
 
 void Employee::display(){

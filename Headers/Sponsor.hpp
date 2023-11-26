@@ -8,12 +8,14 @@
 #include <iostream>
 #include "Person.hpp"
 #include <fstream>
+#include "../Headers/Book.hpp"
 
 class Sponsor : public Person {
 private:
     std::string donationType;
     std::string donationDate;
     std::string quantity;
+    static int collectedAmount;
 public:
     Sponsor() = default;
 
@@ -25,6 +27,7 @@ public:
 
     void display() override;
     void insertPerson(std::vector<std::shared_ptr<Person>> &Persons) override;
+    static int getCollectedAmount();
 
 };
 

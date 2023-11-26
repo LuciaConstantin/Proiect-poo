@@ -4,14 +4,27 @@
 
 #include "../Headers/Sponsor.hpp"
 
+
 Sponsor::Sponsor(const std::string &firstName, const std::string &lastName, const std::string &email,
         const std::string &telephoneNumber, const std::string &id, const std::string &donationType,
-        const std::string &donationDate, const std::string &quantity) : Person(firstName, lastName, email,telephoneNumber, id),donationType(donationType),donationDate(donationDate),quantity(quantity) {}
+        const std::string &donationDate, const std::string &quantity) : Person(firstName, lastName, email,telephoneNumber, id),donationType(donationType),donationDate(donationDate),quantity(quantity) {
+    if(donationType=="Money")
+    { int donQuant = std::stoi(quantity);
+     collectedAmount += donQuant;}
+}
 
 void Sponsor::display(){
     Person::display();
     std::cout << " Donation type: " << donationType << " Donation date: " << donationDate << "Donation quantity: "<<quantity<<std::endl;
 }
+int Sponsor::collectedAmount=0;
+
+int Sponsor::getCollectedAmount() {
+    return collectedAmount;
+}
+
+
+
 void Sponsor::insertPerson(std::vector<std::shared_ptr<Person>> &Persons){
     std::cout << "Sponsor insert" << std::endl;
     std::string lastNameSpo, firstNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo ;
@@ -35,10 +48,12 @@ void Sponsor::insertPerson(std::vector<std::shared_ptr<Person>> &Persons){
     std::shared_ptr<Person> newSponsor = std::make_shared<Sponsor>(firstNameSpo, lastNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo);
     Persons.push_back(newSponsor);
     std::ofstream c("sponsor.in", std::ios::app);
-    if (c) {
+    c<<std::endl;
     c <<lastNameSpo << '\n' << firstNameSpo << '\n' << emailSpo << '\n' << phoneNumberSpo <<'\n'<< idSpo<<'\n' << donTypeSpo<<'\n' << donDateSpo<<'\n' <<donquantSpo<< '\n';
     c.close();
-    } else {
-    std::cerr << "Can't find the file" << std::endl;
-    }
+    if(donTypeSpo=="Money")
+        collectedAmount+=std::stoi(donquantSpo);
+
 }
+
+

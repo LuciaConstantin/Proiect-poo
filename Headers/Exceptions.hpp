@@ -20,6 +20,11 @@ class exceptionPhoneNumber: public std::exception{
     }
 };
 
+class exceptionCNP: public std::exception{
+    const char* what() const noexcept override{
+        return (" The CNP of this employee does not respect the standards");
+    }
+};
 
 
 

@@ -83,7 +83,7 @@ Book::Book(const Book &c)
           publishingYear(c.publishingYear),
           ID(c.ID) {
 }
-Book& Book::operator=(const Book &Book) {
+Book& Book::operator= (const Book &Book) {
     title = Book.title;
     author = Book.author;
     domain = Book.domain;
@@ -103,7 +103,59 @@ const std::string &Book::getAvailability() const {
 void Book::setAvailability(const std::string &avail){
     Book::availability = avail;
 }
+void Book::setIsbn(const std::string &isbn) {
+    ISBN = isbn;
+}
 
+void Book::setPublishingYear(int publishingYear) {
+    Book::publishingYear = publishingYear;
+}
 /*void Book::setAvailability(const std::string &ava) const{
     Book::availability = &ava;
 }*/
+///this function is used to change the book with a new one, the new book is identical with the one that was changed
+void Book::changeBook(std::vector<Book> &books) {
+    for (Book &book : books) {
+        if (book.getAvailability() == "retrasa") {
+            std::cout<<"This book "<<book.getTitle()<<" is not in a good condition and is going to be replaced with a new one from a different edition"<<std::endl;
+            std::string isbn_new;
+            int year;
+            Book newBook = book;///copy
+            newBook.setAvailability("disponibila");
+            ++counter;
+            newBook.ID = counter;
+            std::cout<<"The new ISBN: ";
+            std::cin>>isbn_new;
+            newBook.setIsbn(isbn_new);
+            std::cout<<"The new year: ";
+            std::cin>>year;
+            newBook.setPublishingYear(year);
+            std::swap(book, newBook);///swap
+        }
+    }
+}
+void insertBook(std::vector<Book> & books)
+{
+    std::string bookTitleIns, authorIns, domainIns, availabilityIns, ISBNIns, languageIns, publishingHouseIns;
+    int publishingYearIns;
+    std::cout << "Book title: ";
+    std::cin >> bookTitleIns;
+    std::cout << "Author: ";
+    std::cin >> authorIns;
+    std::cout << "Domain: ";
+    std::cin >> domainIns;
+    std::cout << "Availability: ";
+    std::cin >> availabilityIns;
+    std::cout << "ISBN: ";
+    std::cin >> ISBNIns;
+    std::cout << "Language: ";
+    std::cin >> languageIns;
+    std::cout << "Publishing house: ";
+    std::cin >> publishingHouseIns;
+    std::cout <<" Publishing year: ";
+    std::cin >>publishingYearIns;
+    Book newBook(bookTitleIns,authorIns,domainIns,availabilityIns,ISBNIns,languageIns,publishingHouseIns, publishingYearIns);
+    books.push_back(newBook);
+}
+
+

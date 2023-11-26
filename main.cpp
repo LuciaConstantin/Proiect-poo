@@ -15,6 +15,8 @@
 #include "Headers/Sponsor.hpp"
 #include "Headers/LoanHistory.hpp"
 #include "Headers/Exceptions.hpp"
+//#include "../Headers/Exceptions.hpp"
+#include <stdexcept>
 ///library management system
 
 
@@ -87,7 +89,7 @@ int main() {
     int salary;
    // std::vector<Employee> employees;
     std::vector<std::shared_ptr<Person>> p2;
-    while (getline(a, firstNameEmp)) {
+    /*while (getline(a, firstNameEmp)) {
         getline(a, lastNameEmp);
         getline(a, emailAng);
         getline(a, phoneNr);
@@ -100,16 +102,46 @@ int main() {
         a.ignore();
         std::shared_ptr<Person> newEmployee=std::make_shared<Employee>(lastNameEmp, firstNameEmp, emailAng, phoneNr, id_emp, CNP, address, position, data_ang,
                              salary);
+        try{
+            p2.push_back(newEmployee);
+        }
+        catch(std::exception & e) {
 
-        p2.push_back(newEmployee);
+            std::cout << e.what() << '\n';
+        }
         getline(a,id_emp);
+    }*/
+
+
+    while (getline(a, firstNameEmp)) {
+        try {
+            getline(a, lastNameEmp);
+            getline(a, emailAng);
+            getline(a, phoneNr);
+            getline(a, id_emp);
+            getline(a, CNP);
+            getline(a, address);
+            getline(a, position);
+            getline(a, data_ang);
+            a >> salary;
+            a.ignore();
+
+            std::shared_ptr<Person> newEmployee = std::make_shared<Employee>(lastNameEmp, firstNameEmp, emailAng, phoneNr, id_emp, CNP, address, position, data_ang, salary);
+
+            p2.push_back(newEmployee);
+        } catch (std:: exception & e) {
+            std::cout << e.what() << std::endl;
+        }
+
+        getline(a, id_emp);
     }
+
     a.close();
     std::cout << std::endl;
-   /* for (const auto &person : p2) {
+    for (const auto &person : p2) {
         person->display();
     }
-    Employee newEmp;
+    /*Employee newEmp;
    // newEmp.insertPerson(p2);
 
     for (const auto &person : p2) {
@@ -135,18 +167,18 @@ int main() {
 
     }
     s.close();
-   /* std::cout << std::endl;
-    for (const auto &person : p3) {
+    std::cout << std::endl;
+    /*for (const auto &person : p3) {
         person->display();
     }
     Sponsor newSpon;
-    //newSpon.insertPerson(p3);
-
+    newSpon.insertPerson(p3);
+    std::cout<<std::endl<<newSpon.getCollectedAmount()<<std::endl;
     for (const auto &person : p3) {
         person->display();
     }*/
     LoanHistory lh;
-    lh.addLoan(p1,books);
+    //lh.addLoan(p1,books);
    // lh.addLoan(p1,books);
     /*Employee emp;
     std::vector<std::shared_ptr<Employee>> employees;
@@ -163,5 +195,11 @@ int main() {
    /* lh.returnBook(books);
     for (const Book &cart: books)
         std::cout << cart << std::endl;*/
+   /*Book bk;
+   bk.changeBook(books);
+    for (const Book &cart: books)
+        std::cout << cart << std::endl;*/
+
+
     return 0;
 }
