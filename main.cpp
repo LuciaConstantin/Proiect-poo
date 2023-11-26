@@ -152,7 +152,7 @@ int main () {
     for (const auto &person: p2) {
         person->display();
     }
-
+    emp.insertPerson(p2);
     std::vector<std::shared_ptr<Employee>> employees;
     for (const auto &personPtr: p2)
         if (auto employeePtr = std::dynamic_pointer_cast<Employee>(personPtr))
@@ -163,7 +163,7 @@ int main () {
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
     }
-    emp.insertPerson(p2);
+
     ////------------------------------sponsor----------------------------------------
     Sponsor newSpon;
     newSpon.insertPerson(sponsors);
