@@ -128,7 +128,7 @@ int main () {
     std::cout << std::endl;
 
 ////-------------------books-----------------------------------------------------
-    Book bk;
+    /*Book bk;
     for (const Book &cart: books)
         std::cout << cart << std::endl;
     bk.bookInfo(books);
@@ -146,7 +146,7 @@ int main () {
     cst.searchPers(customers);
     for (const auto &person: customers) {
         person->display();
-    }
+    }*/
     ///-----------------------employees-----------------------------------
     Employee emp;
     for (const auto &person: p2) {
@@ -163,7 +163,7 @@ int main () {
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
     }
-    emp.insertPerson(p2);
+    /*emp.insertPerson(p2);
     ////------------------------------sponsor----------------------------------------
     Sponsor newSpon;
     newSpon.insertPerson(sponsors);
@@ -174,7 +174,7 @@ int main () {
     ///--------------------------------loanHistory---------------------------------------------
     LoanHistory lh;
     lh.addLoan(customers, books);
-    lh.returnBook(books);
+    lh.returnBook(books);*/
 
 
     return 0;
