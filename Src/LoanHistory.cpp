@@ -115,7 +115,6 @@ void LoanHistory::returnBook(std::vector<Book> &books){
     int ok=1;
     std::ifstream l("loanHistory.in");
     std::string firstNameL,lastNameL, bookTitleL, loanDateL, returnDateL;
-    std::string dateOfreturn;
     while(getline(l,lastNameL))
     {
         ok=1;
