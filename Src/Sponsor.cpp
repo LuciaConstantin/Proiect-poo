@@ -47,7 +47,7 @@ void Sponsor::insertPerson(std::vector<std::shared_ptr<Person>> &Persons){
 
     std::shared_ptr<Person> newSponsor = std::make_shared<Sponsor>(firstNameSpo, lastNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo);
     Persons.push_back(newSponsor);
-    std::ofstream c("sponsor.in", std::ios::app);
+    std::ofstream c("sponsori.in", std::ios::app);
     c<<std::endl;
     c <<lastNameSpo << '\n' << firstNameSpo << '\n' << emailSpo << '\n' << phoneNumberSpo <<'\n'<< idSpo<<'\n' << donTypeSpo<<'\n' << donDateSpo<<'\n' <<donquantSpo<< '\n';
     c.close();

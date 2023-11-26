@@ -106,7 +106,7 @@ int main () {
     a.close();
 
 ///-------------------------------------------------
-    std::ifstream s("sponsor.in");
+    std::ifstream s("sponsori.in");
     std::string lastNamespon, firstNamespon, emailspon, nrtel, idspon, dontype, dondate, donquant;
     std::vector<std::shared_ptr<Person>> sponsors;
     while (getline(s, firstNamespon)) {
