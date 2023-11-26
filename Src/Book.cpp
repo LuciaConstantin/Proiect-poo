@@ -130,7 +130,8 @@ void Book::changeBook(std::vector<Book> &books) {
             std::cout<<"The new year: ";
             std::cin>>year;
             newBook.setPublishingYear(year);
-            std::swap(book, newBook);///swap
+           // std::swap(book, newBook);///swap
+           book=newBook;
         }
     }
     std::cout<<std::endl;
