@@ -24,6 +24,7 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
         std::cout << "11. Display Employees" << std::endl;
         std::cout << "12. Add Employee" << std::endl;
         std::cout << "13. Insert sponsor" << std::endl;
+        std::cout << "14. Modify employee" << std::endl;
         std::cout << "0. Exit" << std::endl;
 
         std::cout << "Enter your choice: ";
@@ -79,6 +80,18 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
             case 13:
                 newSpon.insertPerson(Sponsors);
                 break;
+            case 14:
+            {   std::vector<std::shared_ptr<Employee>> employees;
+                for (const auto &personPtr: Employees)
+                    if (auto employeePtr = std::dynamic_pointer_cast<Employee>(personPtr))
+                        employees.push_back(employeePtr);
+                try {
+                    emp.modifEmployee(employees);
+                }
+                catch (std::exception &e) {
+                    std::cout << e.what() << '\n';}
+            }
+            break;
             case 0:
                 std::cout << "Exiting program." << std::endl;
                 break;
