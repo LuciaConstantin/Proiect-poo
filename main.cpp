@@ -135,9 +135,9 @@ int main () {
         per->display();
     }*/
     ///--------------------------------loanHistory---------------------------------------------
-   /* LoanHistory lh;
+    LoanHistory lh;
     lh.addLoan(customers, books);
-    lh.returnBook(books);*/
+    lh.returnBook(books);
 ////-------------------books-----------------------------------------------------
     Book bk;
     for (const Book &cart: books)
