@@ -15,8 +15,11 @@
 #include "Headers/Sponsor.hpp"
 #include "Headers/LoanHistory.hpp"
 #include "Headers/Exceptions.hpp"
+#include "Headers/Menu.hpp"
 //#include "../Headers/Exceptions.hpp"
 #include <stdexcept>
+
+
 ///library management system
 
 
@@ -128,12 +131,12 @@ int main () {
     s.close();
     std::cout << std::endl;
 ////------------------------------sponsor----------------------------------------
-    Sponsor newSpon;
+   /* Sponsor newSpon;
     for (const auto &per: sponsors) {
         per->display();
     }
     newSpon.insertPerson(sponsors);
-    std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;
+    std::cout << std::endl << "The money that have been collected: " << newSpon.getCollectedAmount() << std::endl;*/
 
     ///--------------------------------loanHistory---------------------------------------------
    /* LoanHistory lh;
@@ -174,8 +177,13 @@ int main () {
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
     }*/
-
-
+    Sponsor newSpon;
+    LoanHistory lh;
+    Book bk;
+    Customer cst;
+    Employee emp;
+    Menu m(newSpon,lh,bk,cst,emp);
+    m.displayMenu(customers,books,p2,sponsors);
 
 
     return 0;

@@ -104,7 +104,9 @@ add_executable(${PROJECT_NAME} main.cpp
         Src/LoanHistory.cpp
         Headers/LoanHistory.hpp
         Src/Exceptions.cpp
-        Headers/Exceptions.hpp)
+        Headers/Exceptions.hpp
+        Src/Menu.cpp
+        Headers/Menu.hpp)
 
 ###############################################################################
 
