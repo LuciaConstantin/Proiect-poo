@@ -28,7 +28,7 @@ public:
 
     void display() override;
     void insertPerson(std::vector<std::shared_ptr<Person>> &Persons) override;
-    static int getCollectedAmount();
+   // static int getCollectedAmount();
 
 };
 

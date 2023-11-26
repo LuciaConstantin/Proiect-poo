@@ -10,13 +10,13 @@ LoanHistory::LoanHistory(const std::string &loanDate, const std::string &returnD
                          const std::shared_ptr<Person> &customer) : loanDate(loanDate), returnDate(returnDate),
                                                                     book(book),
                                                                     customer(customer) {}
-const std::string &LoanHistory::getReturnDate() const {
+/*const std::string &LoanHistory::getReturnDate() const {
     return returnDate;
 }
 
 std::shared_ptr<Person>LoanHistory::getCustomers() const {
     return customer;
-}
+}*/
 
 
 void LoanHistory::display()
@@ -151,7 +151,7 @@ void LoanHistory::returnBook(std::vector<Book> &books){
                                           return c.getTitle() == bookTitle;});
         foundBook->setAvailability("disponibila");
 
-        if((retDay<day|| retDay==day) && (retMonth==month || retMonth-1== month) && retYear==year)
+        /*if((retDay<day|| retDay==day) && (retMonth==month || retMonth-1== month) && retYear==year)
         {
             std::cout << "The return has successfully been completed";
         }
@@ -162,6 +162,16 @@ void LoanHistory::returnBook(std::vector<Book> &books){
                 std::cout<<(day-retDay)<<"lei"<<std::endl;
             else if(retMonth!=month)
                 std::cout<<(month-retMonth)*30+(day-retDay)<<" lei"<<std::endl;
+        }*/
+        if ((retDay < day || retDay == day) && (retMonth == month || retMonth - 1 == month) && retYear == year) {
+            std::cout << "The return has successfully been completed";
+        } else {
+            std::cout << "The customer needs to pay a fine of: ";
+            if (retMonth == month) {
+                std::cout << (day - retDay) << " lei" << std::endl;
+            } else {
+                std::cout << (month - retMonth) * 30 + (day - retDay) << " lei" << std::endl;
+            }
         }
     }
 

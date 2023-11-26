@@ -32,10 +32,8 @@ public:
     void returnBook(std::vector<Book> &books);
     void display();
 
-    const std::string &getReturnDate() const;
-
-
-    std::shared_ptr<Person> getCustomers() const;
+    //const std::string &getReturnDate() const;
+   // std::shared_ptr<Person> getCustomers() const;
 };
 
 

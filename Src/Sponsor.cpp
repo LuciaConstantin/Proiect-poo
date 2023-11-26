@@ -19,9 +19,9 @@ void Sponsor::display(){
 }
 int Sponsor::collectedAmount=0;
 
-int Sponsor::getCollectedAmount() {
+/*int Sponsor::getCollectedAmount() {
     return collectedAmount;
-}
+}*/
 
 
 
