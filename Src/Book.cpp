@@ -57,6 +57,7 @@ void Book::bookInfo(const std::vector<Book> &books) {
                   << books[i].publishingYear << " ID: "
                   << books[i].ID << std::endl;
     }
+    std::cout<<std::endl;
 
 }
 void Book::booksAuthor(const std::vector<Book> &books) {
@@ -75,6 +76,7 @@ void Book::booksAuthor(const std::vector<Book> &books) {
     }
     if (ok == 0)
         std::cout << "The author " << authorName << " doesn't exist in our library " << std::endl;
+    std::cout<<std::endl;
 
 }
 Book::Book(const Book &c)
@@ -110,9 +112,7 @@ void Book::setIsbn(const std::string &isbn) {
 void Book::setPublishingYear(int publishingYear) {
     Book::publishingYear = publishingYear;
 }
-/*void Book::setAvailability(const std::string &ava) const{
-    Book::availability = &ava;
-}*/
+
 ///this function is used to change the book with a new one, the new book is identical with the one that was changed
 void Book::changeBook(std::vector<Book> &books) {
     for (Book &book : books) {
@@ -133,17 +133,19 @@ void Book::changeBook(std::vector<Book> &books) {
             std::swap(book, newBook);///swap
         }
     }
+    std::cout<<std::endl;
 }
-void insertBook(std::vector<Book> & books)
+void Book::insertBook(std::vector<Book> & books)
 {
     std::string bookTitleIns, authorIns, domainIns, availabilityIns, ISBNIns, languageIns, publishingHouseIns;
     int publishingYearIns;
+    std::cout << "New book insert "<<std::endl;
     std::cout << "Book title: ";
-    std::cin >> bookTitleIns;
+    getline(std::cin, bookTitleIns);
     std::cout << "Author: ";
-    std::cin >> authorIns;
+    getline(std::cin, authorIns);
     std::cout << "Domain: ";
-    std::cin >> domainIns;
+    getline(std::cin, domainIns);
     std::cout << "Availability: ";
     std::cin >> availabilityIns;
     std::cout << "ISBN: ";
@@ -156,6 +158,7 @@ void insertBook(std::vector<Book> & books)
     std::cin >>publishingYearIns;
     Book newBook(bookTitleIns,authorIns,domainIns,availabilityIns,ISBNIns,languageIns,publishingHouseIns, publishingYearIns);
     books.push_back(newBook);
+    std::cout<<std::endl;
 }
 
 

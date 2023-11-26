@@ -32,11 +32,12 @@ public:
          const std::string &availability,const std::string &isbn,const std::string &language,
          const std::string &publishingHouse,int publishingYear);
 
-    //void setAvailability(const std::string &ava) const;
+
     const std::string &getAvailability() const;
     friend std::ostream &operator<<(std::ostream &os,const Book &Book);
     void static bookInfo(const std::vector<Book> &books);
     void static booksAuthor(const std::vector<Book> &books);
+
     Book(const Book &c);
     Book &operator=(const Book &Book);
 

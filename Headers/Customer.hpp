@@ -15,13 +15,16 @@ private:
     std::string registrationDate;
 public:
     Customer() = default;
-    virtual ~Customer() = default;
-    Customer(const std::string &firstName, const std::string &lastName, const std::string &email,
-             const std::string &telephoneNumber, const std::string &id, const std::string &registrationDate);
-    void display() override;
-    void insertPerson(std::vector<std::shared_ptr<Person>> &Persons) override ;
-};
 
+    virtual ~Customer() = default;
+
+    Customer(const std::string &firstName , const std::string &lastName , const std::string &email ,
+             const std::string &telephoneNumber , const std::string &id , const std::string &registrationDate);
+
+    void display() override;
+
+    void insertPerson(std::vector<std::shared_ptr<Person>> &Persons) override;
+};
 
 
 #endif //OOP_CUSTOMER_HPP

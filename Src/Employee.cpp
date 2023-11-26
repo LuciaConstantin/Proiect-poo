@@ -16,71 +16,87 @@ Employee::Employee(const std::string &firstName, const std::string &lastName, co
         : Person(firstName, lastName, email, telephoneNumber, id), CNP(cnp), address(address), position(position),
           hireDate(hireDate), salary(salary) {
 
-    if (cnp.length() != 13){
-        std::cout << "This employee " << lastName << " " << firstName;
-        throw exceptionCNP();
-        std::cout << '\n';}
+     if ( cnp.length() != 13 ) {
+         std::cout << "This employee " << lastName << " " << firstName;
+         throw exceptionCNP();
+     }
 }
 
 
-void Employee::display(){
+void Employee::display() {
     Person::display();
     std::cout << " CNP: " << CNP << " Address: " << address << " Position: " << position << " Hire date: "
-    << hireDate << "Salary: "<<salary <<std::endl;
+              << hireDate << "Salary: " << salary << std::endl;
 }
+
 void Employee::modifEmployee(std::vector<std::shared_ptr<Employee>> &employees) {
-    std::string dataEmp, infoEmp, nameEmp;
-    std::cout << "Employee data modification" << std::endl;
-    std::cout << "Last name: ";
-    std::cin >> nameEmp;
-    std::cout << "What do you want to change?" << std::endl;
-    std::cin >> dataEmp;
-    std::cout << "Insert the modification: " << std::endl;
-    std::cin >> infoEmp;
+    std::string nameEmp;
+    std::cout << "Enter the last name of the employee you want to modify: ";
+    std::getline(std::cin, nameEmp);
+
     int i = 0;
-    bool ok = 0;
-    for (const auto &emp: employees)
-   {
-        {
-            if (emp->lastName == nameEmp) {
-                ok = 1;
-                break;
-            }
+    int ok = 0;
+
+    for (const auto &emp : employees) {
+        if (emp->lastName == nameEmp) {
+            ok = 1;
+            break;
         }
         i++;
     }
-    if (ok == 1) {
-        if ( "address" == dataEmp )
+
+    if (ok==1) {
+        std::string dataEmp, infoEmp;
+
+        std::cout << "What do you want to change? (address, email, phoneNumber, salary): ";
+        std::cin >> dataEmp;
+
+        std::cout << "Insert the modification: ";
+        std::cin >> infoEmp;
+
+        if (dataEmp == "address") {
             employees[i]->address = infoEmp;
-        else if ( "email" == dataEmp )
+        } else if (dataEmp == "email") {
             employees[i]->email = infoEmp;
-        else if ( "phoneNumber" == dataEmp ) {
-            if ( infoEmp.length() != 10 )
+        } else if (dataEmp == "phoneNumber") {
+            if (infoEmp.length() != 10)
                 throw exceptionPhoneNumber();
             else
                 employees[i]->telephoneNumber = infoEmp;
-        }
-        else if ("salary" == dataEmp)
-        {
-            int sal=std::stoi(infoEmp);
-            if(sal< 2300)
+        } else if (dataEmp == "salary") {
+            int sal = std::stoi(infoEmp);
+            if (sal < 2300)
                 throw exceptionSalary();
             else
-                employees[i]->salary = sal;}
-        else
-            std::cout << "The data " << dataEmp << " can't be modified " << std::endl;
-    } else
-        std::cout << "The employee doesn't exist ";
+                employees[i]->salary = sal;
+        } else {
+            std::cout << "The data " << dataEmp << " can't be modified." << std::endl;
+        }
+    } else {
+        std::cout << "Employee with last name '" << nameEmp << "' not found." << std::endl;
+    }
+
+    // Save the modifications to the file
     std::ofstream f("angajati.in");
-    for (const auto &ang: employees)
-        f << ang->lastName << std::endl << ang->firstName << std::endl << ang->email<< std::endl <<ang->telephoneNumber<< std::endl
-          <<ang->id<< std::endl <<ang->CNP << std::endl << ang->address<< std::endl <<ang->position<< std::endl <<ang->hireDate<< std::endl <<ang->salary<< std::endl<<'\n';
+    for (const auto &ang : employees)
+        f << ang->lastName << '\n'
+          << ang->firstName << '\n'
+          << ang->email << '\n'
+          << ang->telephoneNumber << '\n'
+          << ang->id << '\n'
+          << ang->CNP << '\n'
+          << ang->address << '\n'
+          << ang->position << '\n'
+          << ang->hireDate << '\n'
+          << ang->salary << '\n';
 
     f.close();
 }
+
+
 void Employee::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Employee insert " << std::endl;
-    std::string lastNameEmp, firstNameEmp, emailEmp, phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp, dateEmp, salEmp ;
+    std::string lastNameEmp, firstNameEmp, emailEmp, phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp, dateEmp, salEmp;
     std::cout << "Last name: ";
     std::cin >> lastNameEmp;
     std::cout << "First name: ";
@@ -95,7 +111,7 @@ void Employee::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cin >> cnpEmp;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "Address: ";
-    getline(std::cin,addrEmp);
+    getline(std::cin, addrEmp);
     std::cout << "Position: ";
     std::cin >> positEmp;
     std::cout << "Hire date: ";
@@ -103,14 +119,16 @@ void Employee::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Salary: ";
     std::cin >> salEmp;
 
-    std::shared_ptr<Person> newEmployee = std::make_shared<Employee>(firstNameEmp, lastNameEmp, emailEmp, phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp, dateEmp, std::stoi(salEmp));
+    std::shared_ptr<Person> newEmployee = std::make_shared<Employee>(firstNameEmp, lastNameEmp, emailEmp,
+                                                                     phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp,
+                                                                     dateEmp, std::stoi(salEmp));
     Persons.push_back(newEmployee);
     std::ofstream c("angajati.in", std::ios::app);
-    if (c) {
-    c <<lastNameEmp << '\n' << firstNameEmp << '\n' << emailEmp << '\n' << phoneNumberEmp <<'\n'<< id<<'\n' << cnpEmp<<'\n'
-    <<addrEmp<<'\n' <<positEmp<<'\n' <<dateEmp<<'\n' <<salEmp<< '\n';
+
+    c<<std::endl;
+    c << lastNameEmp << '\n' << firstNameEmp << '\n' << emailEmp << '\n' << phoneNumberEmp << '\n' << idEmp << '\n'
+      << cnpEmp << '\n'
+      << addrEmp << '\n' << positEmp << '\n' << dateEmp << '\n' << salEmp << '\n';
     c.close();
-    } else {
-    std::cerr << "Can't find the file" << std::endl;
-    }
+
 }

@@ -73,6 +73,7 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
         f <<lastNameCust << "\n" << firstNameCust << "\n" << bookTitle << "\n" << day_start << "." << month_start << "." << year_start<< "\n"<<
         day_return<<"."<<month_return<<"."<<year_return;
         foundBook->setAvailability("imprumutata");
+        std::cout<<"The book has been successfully rented "<<std::endl;
     }
     else if (foundCustomer == Persons.end() && foundBook->getAvailability() == "disponibila") {
         customer = std::make_shared<Customer>();
@@ -83,6 +84,7 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
         f << lastNameCust << "\n" << firstNameCust << "\n" << bookTitle << "\n" << day_start << "." << month_start << "." << year_start<< "\n"<<
           day_return<<"."<<month_return<<"."<<year_return<<'\n';
         foundBook->setAvailability("imprumutata");
+        std::cout<<"The book has been successfully rented "<<std::endl;
 
     }
     else if (foundBook != books.end() &&foundBook->getAvailability() != "disponibila")
