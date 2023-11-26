@@ -128,7 +128,7 @@ int main () {
     std::cout << std::endl;
 
 ////-------------------books-----------------------------------------------------
-    /*Book bk;
+    Book bk;
     for (const Book &cart: books)
         std::cout << cart << std::endl;
     bk.bookInfo(books);
@@ -146,7 +146,7 @@ int main () {
     cst.searchPers(customers);
     for (const auto &person: customers) {
         person->display();
-    }*/
+    }
     ///-----------------------employees-----------------------------------
     Employee emp;
     for (const auto &person: p2) {

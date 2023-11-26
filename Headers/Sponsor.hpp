@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Person.hpp"
 #include <fstream>
+#include <string>
 #include "../Headers/Book.hpp"
 
 class Sponsor : public Person {
