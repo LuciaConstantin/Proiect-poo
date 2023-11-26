@@ -13,6 +13,11 @@ int Book::counter = 0;
 const std::string &Book::getTitle() const {
     return title;
 }
+void Book::display() {
+    std::cout<< "title: " << title << " author: " << author << " domain: " << domain << " availability: "
+                 << availability << " ISBN: " << ISBN << " language: " << language << " publishingHouse: "
+                 << publishingHouse << " publishingYear: " << publishingYear << " ID: " << ID;
+}
 
 Book::Book(const std::string& title, const std::string& author, const std::string& domain,
            const std::string& availability, const std::string& isbn, const std::string& language,

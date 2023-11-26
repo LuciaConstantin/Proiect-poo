@@ -28,7 +28,7 @@ int main () {
         return 1;
     }
     std::vector<Book> books;
-    std::string title, author, domain, availability, ISBN, language, publishingHouse, ID;
+    std::string title, author, domain, availability, ISBN, language, publishingHouse;
     int publishingYear;
     while (getline(f, title)) {
         getline(f, author);
@@ -43,7 +43,7 @@ int main () {
 
         Book newBook(title, author, domain, availability, ISBN, language, publishingHouse, publishingYear);
         books.push_back(newBook);
-        getline(f, ID);
+        getline(f, language);
 
     }
     f.close();
@@ -135,19 +135,19 @@ int main () {
         per->display();
     }*/
     ///--------------------------------loanHistory---------------------------------------------
-    LoanHistory lh;
+   /* LoanHistory lh;
     lh.addLoan(customers, books);
-    lh.returnBook(books);
+    lh.returnBook(books);*/
 ////-------------------books-----------------------------------------------------
     Book bk;
     for (const Book &cart: books)
         std::cout << cart << std::endl;
     bk.bookInfo(books);
-    bk.booksAuthor(books);
+   /* bk.booksAuthor(books);
     bk.insertBook(books);
-   // bk.changeBook(books);
+    bk.changeBook(books);
     for (const Book &cart: books)
-        std::cout << cart << std::endl;
+        std::cout << cart << std::endl;*/
     ///---------------------customers---------------------------------
     /*for (const auto &person: customers) {
         person->display();

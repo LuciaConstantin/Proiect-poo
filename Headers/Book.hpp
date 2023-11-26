@@ -25,7 +25,7 @@ public:
     Book() = default;
 
     ~Book() = default;
-
+    void display();
     const std::string &getTitle() const;
 
     Book(const std::string &title,const std::string &author,const std::string &domain,
