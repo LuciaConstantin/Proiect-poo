@@ -13,8 +13,8 @@
 
 class Person {
 protected:
-    std::string lastName;
     std::string firstName;
+    std::string lastName;
     std::string email;
     std::string telephoneNumber;
     std::string id;
