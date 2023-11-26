@@ -19,8 +19,8 @@ moni@gmail.com
 Motan
 Bianca
 Crivat
-salary
-1000
+phoneNumber
+07467834
 Popescu
 Oana
 popOna@gmail.com
