@@ -95,6 +95,7 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
                 break;
             case 15:
                 pers->searchPers(Employees);
+                break;
             case 0:
                 std::cout << "Exiting program." << std::endl;
                 break;
