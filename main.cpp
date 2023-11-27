@@ -136,7 +136,8 @@ int main () {
     Book bk;
     Customer cst;
     Employee emp;
-    Menu m(newSpon,lh,bk,cst,emp);
+    std::shared_ptr<Person> pers;
+    Menu m(newSpon,lh,bk,cst,emp,pers);
     m.displayMenu(customers,books,p2,sponsors);
 
 

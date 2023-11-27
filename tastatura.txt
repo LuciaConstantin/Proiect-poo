@@ -24,4 +24,7 @@ Humanitas
 Crivat
 salary
 1000
+15
+Pinguin
+Mirela
 0

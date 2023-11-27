@@ -25,6 +25,7 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
         std::cout << "12. Add Employee" << std::endl;
         std::cout << "13. Insert sponsor" << std::endl;
         std::cout << "14. Modify employee" << std::endl;
+        std::cout << "15. Search Employee" <<std::endl;
         std::cout << "0. Exit" << std::endl;
 
         std::cout << "Enter your choice: ";
@@ -91,7 +92,9 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
                 catch (std::exception &e) {
                     std::cout << e.what() << '\n';}
             }
-            break;
+                break;
+            case 15:
+                pers->searchPers(Employees);
             case 0:
                 std::cout << "Exiting program." << std::endl;
                 break;
@@ -102,5 +105,9 @@ void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vec
     } while (choice != 0);
 }
 
-Menu::Menu(const Sponsor &newSpon, const LoanHistory &lh, const Book &bk, const Customer &cst, const Employee &emp)
-        : newSpon(newSpon), lh(lh), bk(bk), cst(cst), emp(emp) {}
+/*Menu::Menu(const Sponsor &newSpon, const LoanHistory &lh, const Book &bk, const Customer &cst, const Employee &emp)
+        : newSpon(newSpon), lh(lh), bk(bk), cst(cst), emp(emp) {}*/
+
+Menu::Menu(const Sponsor &newSpon, const LoanHistory &lh, const Book &bk, const Customer &cst, const Employee &emp,
+           const std::shared_ptr<Person> &pers) : newSpon(newSpon), lh(lh), bk(bk), cst(cst), emp(emp), pers(pers) {}
+
