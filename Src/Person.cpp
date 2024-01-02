@@ -33,18 +33,42 @@ void Person::searchPers(const std::vector<std::shared_ptr<Person>> &Persons) {
     std::cin >> lastName_pers;
     std::cout << "First Name: ";
     std::cin >> firstName_pers;
-    int ok = 0;
-    for ( const auto &personPtr: Persons ) {
-        const Person &cli = *personPtr; // Dereference the shared pointer
+    int ok=0;
+    for (const auto &personPtr: Persons) {
+        const Person &cli=*personPtr; // Dereference the shared pointer
         if (cli.getLastName() == lastName_pers && cli.getFirstName() == firstName_pers) {
             std::cout << lastName_pers << " " << firstName_pers << " is in the database" << std::endl;
-            ok = 1;
+            ok=1;
             break;
         }
     }
     if (ok == 0)
         std::cout << "This person is not in the database" << std::endl;
     std::cout << std::endl;
+}
+
+void Person::setFirstName(const std::string &firstName) {
+    Person::firstName = firstName;
+}
+
+void Person::setLastName(const std::string &lastName) {
+    Person::lastName = lastName;
+}
+
+void Person::setEmail(const std::string &email) {
+    Person::email = email;
+}
+
+void Person::setTelephoneNumber(const std::string &telephoneNumber) {
+    Person::telephoneNumber = telephoneNumber;
+}
+
+const std::string &Person::getEmail() const {
+    return email;
+}
+
+const std::string &Person::getTelephoneNumber() const {
+    return telephoneNumber;
 }
 /*int Person::searchPerson(std::vector<std::shared_ptr<Person>> &Persons, std::string LastName, std::string FirstName)
 {

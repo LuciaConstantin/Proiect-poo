@@ -10,22 +10,43 @@
 
 int Book::counter = 0;
 
+Book::Book(const std::string &title, const std::string &author, const std::string &domain,
+           const std::string &availability, const std::string &isbn, const std::string &language,
+           const std::string &publishingHouse, int publishingYear)
+        : title(title), author(author), domain(domain), availability(availability),
+          ISBN(isbn), language(language), publishingHouse(publishingHouse),
+          publishingYear(publishingYear), ID(++ counter) {}
+
+void Book::readFromFile(std::vector<Book> &books){
+    std::ifstream f("carte.in");
+    std::string ti, au, dom, ava, isbn, lang, pubHouse;
+    int pubYear;
+    while (getline(f, ti)) {
+        getline(f, au);
+        getline(f, dom);
+        getline(f, ava);
+        getline(f, isbn);
+        getline(f, lang);
+        getline(f, pubHouse);
+        f >> pubYear;
+        f.ignore();//pt endline
+
+        Book newBook(ti, au, dom, ava, isbn, lang, pubHouse, pubYear);
+        books.push_back(newBook);
+        getline(f, lang);
+    }
+    f.close();
+}
+
 const std::string &Book::getTitle() const {
     return title;
 }
+
 void Book::display() {
-    std::cout<< "title: " << title << " author: " << author << " domain: " << domain << " availability: "
-                 << availability << " ISBN: " << ISBN << " language: " << language << " publishingHouse: "
-                 << publishingHouse << " publishingYear: " << publishingYear << " ID: " << ID;
+    std::cout << "title: " << title << " author: " << author << " domain: " << domain << " availability: "
+              << availability << " ISBN: " << ISBN << " language: " << language << " publishingHouse: "
+              << publishingHouse << " publishingYear: " << publishingYear << " ID: " << ID;
 }
-
-Book::Book(const std::string& title, const std::string& author, const std::string& domain,
-           const std::string& availability, const std::string& isbn, const std::string& language,
-           const std::string& publishingHouse, int publishingYear)
-        : title(title), author(author), domain(domain), availability(availability),
-          ISBN(isbn), language(language), publishingHouse(publishingHouse),
-          publishingYear(publishingYear), ID(++counter) {}
-
 
 
 void Book::bookInfo(const std::vector<Book> &books) {
@@ -40,7 +61,7 @@ void Book::bookInfo(const std::vector<Book> &books) {
             ok = 1;
             break;
         }
-        i++;
+        i ++;
     }
 
     if (ok == 0)
@@ -55,7 +76,7 @@ void Book::bookInfo(const std::vector<Book> &books) {
                   << books[i].publishingYear << " ID: "
                   << books[i].ID << std::endl;
     }
-    std::cout<<std::endl;
+    std::cout << std::endl;
 
 }
 
@@ -78,11 +99,11 @@ void Book::booksAuthor(const std::vector<Book> &books) {
             std::cout << "The author " << authorName << " wrote: " << books[i].title << std::endl;
             ok = 1;
         }
-        i++;
+        i ++;
     }
     if (ok == 0)
         std::cout << "The author " << authorName << " doesn't exist in our library " << std::endl;
-    std::cout<<std::endl;
+    std::cout << std::endl;
 
 }
 
@@ -90,9 +111,10 @@ Book::Book(const Book &c)
         : title(c.title), author(c.author), domain(c.domain), availability(c.availability),
           ISBN(c.ISBN), language(c.language), publishingHouse(c.publishingHouse),
           publishingYear(c.publishingYear),
-          ID(++counter) {
+          ID(++ counter) {
 }
-Book& Book::operator= (const Book &Book) {
+
+Book &Book::operator=(const Book &Book) {
     title = Book.title;
     author = Book.author;
     domain = Book.domain;
@@ -102,7 +124,7 @@ Book& Book::operator= (const Book &Book) {
     publishingHouse = Book.publishingHouse;
     publishingYear = Book.publishingYear;
     ID = Book.ID;
-   // counter = Book.counter;
+    // counter = Book.counter;
     return *this;
 }
 
@@ -110,9 +132,10 @@ const std::string &Book::getAvailability() const {
     return availability;
 }
 
-void Book::setAvailability(const std::string &avail){
+void Book::setAvailability(const std::string &avail) {
     Book::availability = avail;
 }
+
 void Book::setIsbn(const std::string &isbn) {
     ISBN = isbn;
 }
@@ -123,33 +146,35 @@ void Book::setPublishingYear(int publishingyear) {
 
 ///this function is used to change the book with a new one, the new book is identical with the one that was changed
 void Book::changeBook(std::vector<Book> &books) {
-    for (Book &book : books) {
+    for (Book &book: books) {
         if (book.getAvailability() == "retrasa") {
-            std::cout<<"This book "<<book.getTitle()<<" is not in a good condition and is going to be replaced with a new one from a different edition"<<std::endl;
+            std::cout << "This book " << book.getTitle()
+                      << " is not in a good condition and is going to be replaced with a new one from a different edition"
+                      << std::endl;
             std::string isbn_new;
             int year;
             Book newBook = book;///copy
             newBook.setAvailability("disponibila");
-            ++counter;
+            ++ counter;
             newBook.ID = counter;
-            std::cout<<"The new ISBN: ";
-            getline(std::cin,isbn_new);
+            std::cout << "The new ISBN: ";
+            getline(std::cin, isbn_new);
             newBook.setIsbn(isbn_new);
-            std::cout<<"The new year: ";
-            std::cin>>year;
+            std::cout << "The new year: ";
+            std::cin >> year;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             newBook.setPublishingYear(year);
             std::swap(book, newBook);///swap
-           //book=newBook;
+            //book=newBook;
         }
     }
-    std::cout<<std::endl;
+    std::cout << std::endl;
 }
-void Book::insertBook(std::vector<Book> & books)
-{
+
+/*void Book::insertBook(std::vector<Book> &books) {
     std::string bookTitleIns, authorIns, domainIns, availabilityIns, ISBNIns, languageIns, publishingHouseIns;
     int publishingYearIns;
-    std::cout << "New book insert "<<std::endl;
+    std::cout << "New book insert " << std::endl;
     std::cout << "Book title: ";
     getline(std::cin, bookTitleIns);
     std::cout << "Author: ";
@@ -164,11 +189,16 @@ void Book::insertBook(std::vector<Book> & books)
     std::cin >> languageIns;
     std::cout << "Publishing house: ";
     std::cin >> publishingHouseIns;
-    std::cout <<" Publishing year: ";
-    std::cin >>publishingYearIns;
-    Book newBook(bookTitleIns,authorIns,domainIns,availabilityIns,ISBNIns,languageIns,publishingHouseIns, publishingYearIns);
+    std::cout << " Publishing year: ";
+    std::cin >> publishingYearIns;
+    Book newBook(bookTitleIns, authorIns, domainIns, availabilityIns, ISBNIns, languageIns, publishingHouseIns,
+                 publishingYearIns);
     books.push_back(newBook);
-    std::cout<<std::endl;
+    std::cout << std::endl;
+}
+*/
+const std::string &Book::getAuthor() const {
+    return author;
 }
 
 

@@ -10,14 +10,6 @@ LoanHistory::LoanHistory(const std::string &loanDate, const std::string &returnD
                          const std::shared_ptr<Person> &customer) : loanDate(loanDate), returnDate(returnDate),
                                                                     book(book),
                                                                     customer(customer) {}
-/*const std::string &LoanHistory::getReturnDate() const {
-    return returnDate;
-}
-
-std::shared_ptr<Person>LoanHistory::getCustomers() const {
-    return customer;
-}*/
-
 
 void LoanHistory::display()
 {
@@ -47,25 +39,26 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
                                           return p->getFirstName() == firstNameCust && p->getLastName() == lastNameCust;});
     auto foundBook = std::find_if(books.begin(), books.end(),
                                   [&](const Book &c) {
-                                      return c.getTitle() == bookTitle;});///returns the an interator to the first correct value
+                                      return c.getTitle() == bookTitle;});///returns the an iterator to the first correct value
 
 
     ///Finding the current date and adding it automatically into the file
-    auto current = std::chrono::system_clock::now();
-    auto now_timet = std::chrono::system_clock::to_time_t(current);
-    auto date = localtime(&now_timet);
+    auto current = std::chrono::system_clock::now();///get the current time of the system clock
+    auto now_timet = std::chrono::system_clock::to_time_t(current);///covert to a time_t format
+    auto date = localtime(&now_timet);///the current date and time is stored in a tm structure
     int year_start = date->tm_year + 1900; ///tm_year represents the number of years starting from 1900
-    int month_start = date->tm_mon + 1;
-    int day_start = date->tm_mday;
+    int month_start = date->tm_mon + 1;///date->tm stores values from 0-11 so we should add one for the correct month
+    int day_start = date->tm_mday;///gets the current day
 
-    time_t epoch = std::mktime(date);
-    epoch += (60*60*24*21);
+    ///Finding the day the book should be returned
+    time_t epoch = std::mktime(date);///convert the structure date to time_t which represents the number of seconds since January 1, 1970
+    epoch += (60*60*24*21);///add 21 days in seconds to determine the date that the book should be returned
     auto date_return=localtime(&epoch);
     int year_return = date_return->tm_year + 1900;
     int month_return = date_return->tm_mon + 1;
     int day_return = date_return->tm_mday;
 
-
+    ///if we find the customer in the data base and also the book, we still need to check if the book is available("disponibila")
     if (foundCustomer != Persons.end() && foundBook != books.end() && foundBook->getAvailability() == "disponibila") {
         f << std::endl;
         f << lastNameCust << "\n" << firstNameCust << "\n" << bookTitle << "\n" << day_start << "." << month_start << "." << year_start << "\n"
@@ -91,9 +84,9 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
     f.close();
 }
 
-void LoanHistory::returnBook(std::vector<Book> &books){
+void LoanHistory::returnBook(std::vector<Book> &books, std::vector<PersonBookPair> &observers) {
     std::string lastNameCust, firstNameCust, bookTitle;
-    std::cout<<"Book return"<<std::endl;
+    std::cout << "Book return" << std::endl;
     std::cout << "Customer name" << std::endl;
     std::cout << "Customer last name: ";
     std::getline(std::cin, lastNameCust);
@@ -111,29 +104,26 @@ void LoanHistory::returnBook(std::vector<Book> &books){
     int month = date->tm_mon + 1;
     int day = date->tm_mday;
 
-    int ok=1;
+    int ok = 1;
     std::ifstream l("loanHistory.in");
-    std::string firstNameL,lastNameL, bookTitleL, loanDateL, returnDateL;
-    while(getline(l,lastNameL))
-    {
-        ok=1;
+    std::string firstNameL, lastNameL, bookTitleL, loanDateL, returnDateL;
+    while (getline(l, lastNameL)) {
+        ok = 1;
         getline(l, firstNameL);
         getline(l, bookTitleL);
         getline(l, loanDateL);
         getline(l, returnDateL);
 
-        if(lastNameL==lastNameCust && firstNameL==firstNameCust && bookTitleL==bookTitle)
-        {
-            ok=0;
+        if (lastNameL == lastNameCust && firstNameL == firstNameCust && bookTitleL == bookTitle) {
+            ok = 0;
             break;
         }
-        getline(l,loanDateL);
+        getline(l, loanDateL);
 
     }
-    if(ok==1)
-        std::cout<<"The data that has been introduced doesn't exist";
-    else
-    {
+    if (ok == 1)
+        std::cout << "The data that has been introduced doesn't exist";
+    else {
         std::string ret = returnDateL;
         std::string delimiter = ".";
         std::string retDayStr = ret.substr(0, ret.find(delimiter));
@@ -148,21 +138,11 @@ void LoanHistory::returnBook(std::vector<Book> &books){
         int retYear = std::stoi(retYearStr);
         auto foundBook = std::find_if(books.begin(), books.end(),
                                       [&](const Book &c) {
-                                          return c.getTitle() == bookTitle;});
+                                          return c.getTitle() == bookTitle;
+                                      });
         foundBook->setAvailability("disponibila");
 
-        /*if((retDay<day|| retDay==day) && (retMonth==month || retMonth-1== month) && retYear==year)
-        {
-            std::cout << "The return has successfully been completed";
-        }
-        else
-        {
-            std::cout<< "The customer needs to pay a fine of: ";
-            if(retMonth==month)
-                std::cout<<(day-retDay)<<"lei"<<std::endl;
-            else if(retMonth!=month)
-                std::cout<<(month-retMonth)*30+(day-retDay)<<" lei"<<std::endl;
-        }*/
+        ///checking if the book is returned before the term and calculate the fine if not
         if ((retDay < day || retDay == day) && (retMonth == month || retMonth - 1 == month) && retYear == year) {
             std::cout << "The return has successfully been completed";
         } else {
@@ -173,11 +153,12 @@ void LoanHistory::returnBook(std::vector<Book> &books){
                 std::cout << (month - retMonth) * 30 + (day - retDay) << " lei" << std::endl;
             }
         }
+        WaitingList wl;
+        wl.anonuce(observers, books);
     }
-
-
-
 }
+
+
 
 
 

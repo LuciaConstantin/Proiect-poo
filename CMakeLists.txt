@@ -108,7 +108,18 @@ add_executable(${PROJECT_NAME} main.cpp
         Src/Menu.cpp
         Headers/Menu.hpp
         Src/RareBooks.cpp
-        Headers/RareBooks.hpp)
+        Headers/RareBooks.hpp
+        Src/Resource.cpp
+        Headers/Resource.hpp
+        Src/Hall.cpp
+        Headers/Hall.hpp
+        Src/ResourceFactory.cpp
+        Headers/ResourceFactory.hpp
+        Src/WaitingList.cpp
+        Headers/WaitingList.hpp
+        Src/Reservation.cpp
+        Headers/Reservation.hpp
+)
 
 ###############################################################################
 

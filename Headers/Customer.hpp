@@ -9,6 +9,9 @@
 #include <vector>
 #include "Person.hpp"
 #include <memory>
+#include <fstream>
+#include <string>
+
 
 class Customer : public Person {
 private:
@@ -24,6 +27,7 @@ public:
     void display() override;
 
     void insertPerson(std::vector<std::shared_ptr<Person>> &Persons) override;
+    void CustomersFromFile(std::vector<std::shared_ptr<Person>> &customers);
 };
 
 

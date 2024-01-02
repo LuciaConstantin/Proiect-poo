@@ -13,18 +13,52 @@
 Employee::Employee(const std::string &firstName, const std::string &lastName, const std::string &email,
                    const std::string &telephoneNumber, const std::string &id, const std::string &cnp,
                    const std::string &address, const std::string &position, const std::string &hireDate, int salary)
-        : Person(firstName, lastName, email, telephoneNumber, id), CNP(cnp), address(address), position(position),
-          hireDate(hireDate), salary(salary) {
+        : Person (firstName, lastName, email, telephoneNumber, id), CNP (cnp), address (address), position (position),
+          hireDate (hireDate), salary (salary) {
 
-     if ( cnp.length() != 13 ) {
-         std::cout << "This employee " << lastName << " " << firstName;
-         throw exceptionCNP();
-     }
+    if (cnp.length () != 13) {
+        std::cout << "This employee " << lastName << " " << firstName;
+        throw exceptionCNP ();
+    }
+}
+
+void Employee::employeesFromFile(std::vector<std::shared_ptr<Person>> &emp){
+    std::ifstream a("angajati.in");
+    std::string lastNameEmp, firstNameEmp, cnp, add, emailAng, phoneNr, pos, data_ang, id_emp;
+    int sal;
+
+    while (getline(a, firstNameEmp)) {
+        try {
+            getline(a, lastNameEmp);
+            getline(a, emailAng);
+            getline(a, phoneNr);
+            getline(a, id_emp);
+            getline(a, cnp);
+            getline(a, add);
+            getline(a, pos);
+            getline(a, data_ang);
+            a >> sal;
+            a.ignore();
+
+            std::shared_ptr<Person> newEmployee = std::make_shared<Employee>(firstNameEmp, lastNameEmp, emailAng,
+                                                                             phoneNr, id_emp, cnp, add, pos,
+                                                                             data_ang, sal);
+
+            emp.push_back(newEmployee);
+        } catch (std::exception &e) {
+            std::cout << e.what() << std::endl;
+        }
+        getline(a, id_emp);
+    }
+
+    a.close();
+
 }
 
 
+
 void Employee::display() {
-    Person::display();
+    Person::display ();
     std::cout << " CNP: " << CNP << " Address: " << address << " Position: " << position << " Hire date: "
               << hireDate << "Salary: " << salary << std::endl;
 }
@@ -32,12 +66,12 @@ void Employee::display() {
 void Employee::modifEmployee(const std::vector<std::shared_ptr<Employee>> &employees) {
     std::string nameEmp;
     std::cout << "Enter the last name of the employee you want to modify: ";
-    std::getline(std::cin, nameEmp);
+    std::getline (std::cin, nameEmp);
 
     int i = 0;
     int ok = 0;
 
-    for (const auto &emp : employees) {
+    for (const auto &emp: employees) {
         if (emp->lastName == nameEmp) {
             ok = 1;
             break;
@@ -45,7 +79,7 @@ void Employee::modifEmployee(const std::vector<std::shared_ptr<Employee>> &emplo
         i++;
     }
 
-    if (ok==1) {
+    if (ok == 1) {
         std::string dataEmp, infoEmp;
 
         std::cout << "What do you want to change? (address, email, phoneNumber, salary): ";
@@ -59,14 +93,14 @@ void Employee::modifEmployee(const std::vector<std::shared_ptr<Employee>> &emplo
         } else if (dataEmp == "email") {
             employees[i]->email = infoEmp;
         } else if (dataEmp == "phoneNumber") {
-            if (infoEmp.length() != 10)
-                throw exceptionPhoneNumber();
+            if (infoEmp.length () != 10)
+                throw exceptionPhoneNumber ();
             else
                 employees[i]->telephoneNumber = infoEmp;
         } else if (dataEmp == "salary") {
-            int sal = std::stoi(infoEmp);
+            int sal = std::stoi (infoEmp);
             if (sal < 2300)
-                throw exceptionSalary();
+                throw exceptionSalary ();
             else
                 employees[i]->salary = sal;
         } else {
@@ -77,8 +111,8 @@ void Employee::modifEmployee(const std::vector<std::shared_ptr<Employee>> &emplo
     }
 
     // Save the modifications to the file
-    std::ofstream f("angajati.in");
-    for (const auto &ang : employees)
+    std::ofstream f ("angajati.in");
+    for (const auto &ang: employees)
         f << ang->lastName << '\n'
           << ang->firstName << '\n'
           << ang->email << '\n'
@@ -90,7 +124,7 @@ void Employee::modifEmployee(const std::vector<std::shared_ptr<Employee>> &emplo
           << ang->hireDate << '\n'
           << ang->salary << '\n';
 
-    f.close();
+    f.close ();
 }
 
 
@@ -109,9 +143,9 @@ void Employee::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cin >> idEmp;
     std::cout << "CNP: ";
     std::cin >> cnpEmp;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n');
     std::cout << "Address: ";
-    getline(std::cin, addrEmp);
+    getline (std::cin, addrEmp);
     std::cout << "Position: ";
     std::cin >> positEmp;
     std::cout << "Hire date: ";
@@ -119,16 +153,16 @@ void Employee::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Salary: ";
     std::cin >> salEmp;
 
-    std::shared_ptr<Person> newEmployee = std::make_shared<Employee>(firstNameEmp, lastNameEmp, emailEmp,
-                                                                     phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp,
-                                                                     dateEmp, std::stoi(salEmp));
-    Persons.push_back(newEmployee);
-    std::ofstream c("angajati.in", std::ios::app);
+    std::shared_ptr<Person> newEmployee = std::make_shared<Employee> (firstNameEmp, lastNameEmp, emailEmp,
+                                                                      phoneNumberEmp, idEmp, cnpEmp, addrEmp, positEmp,
+                                                                      dateEmp, std::stoi (salEmp));
+    Persons.push_back (newEmployee);
+    std::ofstream c ("angajati.in", std::ios::app);
 
-    c<<std::endl;
+    c << std::endl;
     c << lastNameEmp << '\n' << firstNameEmp << '\n' << emailEmp << '\n' << phoneNumberEmp << '\n' << idEmp << '\n'
       << cnpEmp << '\n'
       << addrEmp << '\n' << positEmp << '\n' << dateEmp << '\n' << salEmp << '\n';
-    c.close();
+    c.close ();
 
 }

@@ -5,17 +5,39 @@
 #include "../Headers/Customer.hpp"
 #include <fstream>
 
-Customer::Customer (const std::string &firstName, const std::string &lastName, const std::string &email,
-                    const std::string &telephoneNumber, const std::string &id, const std::string &registrationDate)
+
+Customer::Customer(const std::string &firstName, const std::string &lastName, const std::string &email,
+                   const std::string &telephoneNumber, const std::string &id, const std::string &registrationDate)
         : Person(firstName, lastName, email, telephoneNumber, id),
           registrationDate(registrationDate) {}
 
-void Customer::display () {
+void Customer::CustomersFromFile(std::vector<std::shared_ptr<Person>> &customers){
+    std::ifstream c("client.in");
+
+    std::string lName, fName, ema, phoneNr, ID, dt;
+    //std::vector<Customer> Customers;
+    while (getline(c, fName)) {
+        getline(c, lName);
+        getline(c, ema);
+        getline(c, phoneNr);
+        getline(c, ID);
+        getline(c, dt);
+
+        std::shared_ptr<Person> newCustomer = std::make_shared<Customer>(fName, lName, ema, phoneNr, ID,
+                                                                         dt);
+        customers.push_back(newCustomer);
+        getline(c, dt);
+    }
+    c.close();
+}
+
+
+void Customer::display() {
     Person::display();
     std::cout << " Registration date: " << registrationDate << std::endl;
 }
 
-void Customer::insertPerson (std::vector<std::shared_ptr<Person>> &Persons) {
+void Customer::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Customer insert " << std::endl;
     std::string lastNameCust, firstNameCust, emailCust, phoneNumberCust, idCust, registrationDateCust;
     std::cout << "Last name: ";
@@ -31,10 +53,8 @@ void Customer::insertPerson (std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Registration date: ";
     std::cin >> registrationDateCust;
 
-/* Customer* newCustomer = new Customer(firstName, lastName, email, phoneNumber, id, registrationDate);
- Persons.push_back(newCustomer);*/
-    std::shared_ptr<Person> newCustomer = std::make_shared<Customer>(firstNameCust, lastNameCust, emailCust,
-                                                                     phoneNumberCust, idCust, registrationDateCust);
+    std::shared_ptr<Person> newCustomer=std::make_shared<Customer>(firstNameCust, lastNameCust, emailCust,
+                                                                   phoneNumberCust, idCust, registrationDateCust);
     Persons.push_back(newCustomer);
     std::ofstream c("client.in", std::ios::app);
     if (c) {

@@ -8,6 +8,9 @@
 #include "../Headers/LoanHistory.hpp"
 #include "../Headers/Sponsor.hpp"
 #include "../Headers/Employee.hpp"
+#include "../Headers/ResourceFactory.hpp"
+#include "../Headers/Hall.hpp"
+#include "../Headers/Reservation.hpp"
 
 class Menu {
 private:
@@ -17,15 +20,21 @@ private:
     Customer cst;
     Employee emp;
     std::shared_ptr<Person> pers;
+    std::shared_ptr<ResourceFactory> resourceFactory;
+    Menu(const Sponsor &newSpon, const LoanHistory &lh, const Book &bk, const Customer &cst, const Employee &emp,
+                                       const std::shared_ptr<Person> &pers);
+    static Menu *instancePtr;
 
 public:
+    using PersonBookPair = std::tuple<std::shared_ptr<ConcretePerson>, Book>;
     void displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vector<Book> &books,
-                     std::vector<std::shared_ptr<Person>> &Employees,std::vector<std::shared_ptr<Person>> &Sponsors);
+                     std::vector<std::shared_ptr<Person>> &Employees,std::vector<std::shared_ptr<Person>> &Sponsors,
+                     std::vector<std::shared_ptr<Hall>> &Halls,std::vector<PersonBookPair>& observers);
 
-    //Menu(const Sponsor &newSpon, const LoanHistory &lh, const Book &bk, const Customer &cst, const Employee &emp);
+    Menu(const Menu&) =delete;/// deleting copy constructor
+    static Menu* getInstance();
 
-    Menu(const Sponsor &newSpon, const LoanHistory &lh, const Book &bk, const Customer &cst, const Employee &emp,
-         const std::shared_ptr<Person> &pers);
+
 };
 
 

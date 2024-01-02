@@ -14,6 +14,7 @@
 #include <chrono>
 #include <ctime>
 #include <fstream>
+#include "../Headers/WaitingList.hpp"
 
 class LoanHistory
 {
@@ -27,13 +28,15 @@ public:
                 const std::shared_ptr<Person> &customer);
 
     LoanHistory()=default;
+
     ~LoanHistory()=default;
     void addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::vector<Book> &books);
-    void returnBook(std::vector<Book> &books);
+    using PersonBookPair = std::tuple<std::shared_ptr<ConcretePerson>, Book>;
+    void returnBook(std::vector<Book> &books,std::vector<PersonBookPair> &observers);
     void display();
 
-    //const std::string &getReturnDate() const;
-   // std::shared_ptr<Person> getCustomers() const;
+
+
 };
 
 

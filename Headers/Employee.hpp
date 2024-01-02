@@ -8,6 +8,8 @@
 #include <vector>
 #include "Person.hpp"
 #include <memory>
+#include <fstream>
+#include <string>
 
 class Employee : public Person {
 private:
@@ -27,6 +29,7 @@ public:
     void display() override;
     static void modifEmployee(const std::vector<std::shared_ptr<Employee>> &employees);
     void insertPerson(std::vector<std::shared_ptr<Person>> &Persons)override;
+    void employeesFromFile(std::vector<std::shared_ptr<Person>> &emp);
 };
 
 

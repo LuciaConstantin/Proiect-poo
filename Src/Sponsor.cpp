@@ -6,18 +6,25 @@
 
 
 Sponsor::Sponsor(const std::string &firstName, const std::string &lastName, const std::string &email,
-        const std::string &telephoneNumber, const std::string &id, const std::string &donationType,
-        const std::string &donationDate, const std::string &quantity) : Person(firstName, lastName, email,telephoneNumber, id),donationType(donationType),donationDate(donationDate),quantity(quantity) {
-    if(donationType=="Money")
-    { int donQuant = std::stoi(quantity);
-     collectedAmount += donQuant;}
+                 const std::string &telephoneNumber, const std::string &id, const std::string &donationType,
+                 const std::string &donationDate, const std::string &quantity) : Person(firstName, lastName, email,
+                                                                                        telephoneNumber, id),
+                                                                                 donationType(donationType),
+                                                                                 donationDate(donationDate),
+                                                                                 quantity(quantity) {
+    if ( donationType == "Money" ) {
+        int donQuant = std::stoi(quantity);
+        collectedAmount += donQuant;
+    }
 }
 
-void Sponsor::display(){
+void Sponsor::display() {
     Person::display();
-    std::cout << " Donation type: " << donationType << " Donation date: " << donationDate << "Donation quantity: "<<quantity<<std::endl;
+    std::cout << " Donation type: " << donationType << " Donation date: " << donationDate << "Donation quantity: "
+              << quantity << std::endl;
 }
-int Sponsor::collectedAmount=0;
+
+int Sponsor::collectedAmount = 0;
 
 /*int Sponsor::getCollectedAmount() {
     return collectedAmount;
@@ -25,9 +32,9 @@ int Sponsor::collectedAmount=0;
 
 
 
-void Sponsor::insertPerson(std::vector<std::shared_ptr<Person>> &Persons){
+void Sponsor::insertPerson(std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << "Sponsor insert" << std::endl;
-    std::string lastNameSpo, firstNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo ;
+    std::string lastNameSpo, firstNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo;
     std::cout << "Last name: ";
     std::cin >> lastNameSpo;
     std::cout << "First name: ";
@@ -45,15 +52,36 @@ void Sponsor::insertPerson(std::vector<std::shared_ptr<Person>> &Persons){
     std::cout << "Donation quant: ";
     std::cin >> donquantSpo;
 
-    std::shared_ptr<Person> newSponsor = std::make_shared<Sponsor>(firstNameSpo, lastNameSpo, emailSpo, phoneNumberSpo, idSpo, donTypeSpo, donDateSpo, donquantSpo);
+    std::shared_ptr<Person> newSponsor = std::make_shared<Sponsor>(firstNameSpo, lastNameSpo, emailSpo, phoneNumberSpo,
+                                                                   idSpo, donTypeSpo, donDateSpo, donquantSpo);
     Persons.push_back(newSponsor);
     std::ofstream c("sponsori.in", std::ios::app);
-    c<<std::endl;
-    c <<lastNameSpo << '\n' << firstNameSpo << '\n' << emailSpo << '\n' << phoneNumberSpo <<'\n'<< idSpo<<'\n' << donTypeSpo<<'\n' << donDateSpo<<'\n' <<donquantSpo<< '\n';
+    c << std::endl;
+    c << lastNameSpo << '\n' << firstNameSpo << '\n' << emailSpo << '\n' << phoneNumberSpo << '\n' << idSpo << '\n'
+      << donTypeSpo << '\n' << donDateSpo << '\n' << donquantSpo << '\n';
     c.close();
-    if(donTypeSpo=="Money")
-        collectedAmount+=std::stoi(donquantSpo);
+    if ( donTypeSpo == "Money" )
+        collectedAmount += std::stoi(donquantSpo);
 
 }
 
+void Sponsor::sponsorsFromFile(std::vector<std::shared_ptr<Person>> &sponsors){
+    std::ifstream s("sponsori.in");
+    std::string lastNamespon, firstNamespon, emailspon, nrtel, idspon, dontype, dondate, donquant;
+    while (getline(s, firstNamespon)) {
+        getline(s, lastNamespon);
+        getline(s, emailspon);
+        getline(s, nrtel);
+        getline(s, idspon);
+        getline(s, dontype);
+        getline(s, dondate);
+        getline(s, donquant);
 
+        std::shared_ptr<Person> newSponsor = std::make_shared<Sponsor>(lastNamespon, firstNamespon, emailspon, nrtel,
+                                                                       idspon, dontype, dondate, donquant);
+        sponsors.push_back(newSponsor);
+
+        getline(s, nrtel);
+    }
+    s.close();
+}
