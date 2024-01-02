@@ -44,6 +44,7 @@ int main() {
     std::shared_ptr<Hall> h;
     std::vector<std::shared_ptr<Hall>> halls;
     h->hallsFromFile(halls);
+
     ///--------------------------------------------------
     std::vector<WaitingList::PersonBookPair> observers;
     ///----------------------------------------------------

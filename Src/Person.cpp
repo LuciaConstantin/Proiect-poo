@@ -47,20 +47,20 @@ void Person::searchPers(const std::vector<std::shared_ptr<Person>> &Persons) {
     std::cout << std::endl;
 }
 
-void Person::setFirstName(const std::string &firstName) {
-    Person::firstName = firstName;
+void Person::setFirstName(const std::string &fName) {
+    Person::firstName = fName;
 }
 
-void Person::setLastName(const std::string &lastName) {
-    Person::lastName = lastName;
+void Person::setLastName(const std::string &lName) {
+    Person::lastName = lName;
 }
 
-void Person::setEmail(const std::string &email) {
-    Person::email = email;
+void Person::setEmail(const std::string &eml) {
+    Person::email = eml;
 }
 
-void Person::setTelephoneNumber(const std::string &telephoneNumber) {
-    Person::telephoneNumber = telephoneNumber;
+void Person::setTelephoneNumber(const std::string &telNumber) {
+    Person::telephoneNumber = telNumber;
 }
 
 const std::string &Person::getEmail() const {
