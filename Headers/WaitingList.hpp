@@ -16,7 +16,7 @@ public:
     using PersonBookPair = std::tuple<std::shared_ptr<ConcretePerson>, Book>;
     void insertObserver(std::vector<PersonBookPair>& observers, std::vector<Book> &books);
     void display(const std::vector<PersonBookPair> &observers);
-    void anonuce(std::vector<PersonBookPair>& observers,std::vector<Book> books);
+    void anonuce(const std::vector<PersonBookPair>& observers,std::vector<Book> books);
 };
 
 

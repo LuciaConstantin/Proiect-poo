@@ -61,7 +61,7 @@ void WaitingList::display(const std::vector<PersonBookPair> &observers) {
         std::cout << "-------------------------" << std::endl;
     }
 }
-void WaitingList::anonuce(std::vector<PersonBookPair>& observers,std::vector<Book>books){
+void WaitingList::anonuce(const std::vector<PersonBookPair>& observers,std::vector<Book>books){
     for (const auto &observer:observers){
         auto person = std::get<std::shared_ptr<ConcretePerson>> (observer);
         auto book = std::get<Book> (observer);
