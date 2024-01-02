@@ -32,7 +32,7 @@ public:
     ~LoanHistory()=default;
     void addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::vector<Book> &books);
     using PersonBookPair = std::tuple<std::shared_ptr<ConcretePerson>, Book>;
-    void returnBook(std::vector<Book> &books,std::vector<PersonBookPair> &observers);
+    void returnBook(std::vector<Book> &books,const std::vector<PersonBookPair> &observers);
     void display();
 
 

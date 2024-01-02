@@ -84,7 +84,7 @@ void LoanHistory::addLoan(std::vector<std::shared_ptr<Person>> &Persons, std::ve
     f.close();
 }
 
-void LoanHistory::returnBook(std::vector<Book> &books, std::vector<PersonBookPair> &observers) {
+void LoanHistory::returnBook(std::vector<Book> &books, const std::vector<PersonBookPair> &observers) {
     std::string lastNameCust, firstNameCust, bookTitle;
     std::cout << "Book return" << std::endl;
     std::cout << "Customer name" << std::endl;
