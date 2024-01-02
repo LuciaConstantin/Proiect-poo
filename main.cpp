@@ -16,6 +16,7 @@
 #include "Headers/LoanHistory.hpp"
 #include "Headers/Exceptions.hpp"
 #include "Headers/Menu.hpp"
+#include "Headers/Hall.hpp"
 //#include "../Headers/Exceptions.hpp"
 #include <stdexcept>
 #include "Headers/ResourceFactory.hpp"
@@ -41,16 +42,17 @@ int main() {
     std::vector<std::shared_ptr<Person>> sponsors;
     s.sponsorsFromFile(sponsors);
     ///-------------------------------------------------
-    std::shared_ptr<Hall> h;
+   /* std::shared_ptr<Hall> h;
     std::vector<std::shared_ptr<Hall>> halls;
-    h->hallsFromFile(halls);
-
+    h->hallsFromFile(halls);*/
+    Hall hl;
+    std::vector<std::shared_ptr<Hall>> halls;
+    hl.hallsFromFile(halls);
     ///--------------------------------------------------
     std::vector<WaitingList::PersonBookPair> observers;
     ///----------------------------------------------------
     Menu* M=Menu ::getInstance();
     M->displayMenu(customers, books, p2, sponsors,halls, observers);
-
 
 
 

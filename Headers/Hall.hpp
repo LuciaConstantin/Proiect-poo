@@ -20,12 +20,13 @@ private:
     std::string closingHour;
 public:
     void display() override;
+    Hall()=default;
+    ~Hall()=default;
+    const std::string &getHallName() const;
+    void hallsFromFile(std::vector<std::shared_ptr<Hall>> &halls);
 
     Hall(const std::string &hallName, int nrSeats, const std::string &dimensions, const std::string &openingHour,
          const std::string &closingHour);
-
-    const std::string &getHallName() const;
-    void hallsFromFile(std::vector<std::shared_ptr<Hall>> &halls);
 };
 
 

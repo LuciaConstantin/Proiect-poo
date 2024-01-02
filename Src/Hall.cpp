@@ -10,9 +10,6 @@ void Hall::display()
     <<"\n Opening hour: "<<openingHour<<"\n Closing hour: "<<closingHour<<std::endl;
 }
 
-Hall::Hall(const std::string &hallName, int nrSeats, const std::string &dimensions, const std::string &openingHour,
-           const std::string &closingHour) : hallName(hallName), nrSeats(nrSeats), dimensions(dimensions),
-                                             openingHour(openingHour), closingHour(closingHour) {}
 
 const std::string &Hall::getHallName() const {
     return hallName;
@@ -34,3 +31,7 @@ void Hall::hallsFromFile(std::vector<std::shared_ptr<Hall>> &halls){
     }
     h.close();
 }
+
+Hall::Hall(const std::string &hallName, int nrSeats, const std::string &dimensions, const std::string &openingHour,
+           const std::string &closingHour) : hallName(hallName), nrSeats(nrSeats), dimensions(dimensions),
+                                             openingHour(openingHour), closingHour(closingHour) {}

@@ -41,7 +41,7 @@ void WaitingList::insertObserver(std::vector<PersonBookPair> &observers, std::ve
 
 }
 
-void WaitingList::display(std::vector<PersonBookPair> &observers) {
+void WaitingList::display(const std::vector<PersonBookPair> &observers) {
     std::cout << "\nWaiting List Observers: " << std::endl;
 
     for (const auto &observer: observers) {
