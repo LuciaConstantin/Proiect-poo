@@ -68,7 +68,6 @@ bool HallValidator::validate(const Reservation &reservation) const {
         }
     }
 
-
     reservedHallsAndSeats[ reservation.getHallName() ].insert(reservation.getSeat());
 
     return true;

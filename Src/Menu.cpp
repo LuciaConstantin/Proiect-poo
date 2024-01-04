@@ -4,10 +4,29 @@
 
 #include "../Headers/Menu.hpp"
 
-void Menu::displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vector<Book> &books,
-                       std::vector<std::shared_ptr<Person>> &Employees,
-                       std::vector<std::shared_ptr<Person>> &Sponsors,
-                       std::vector<std::shared_ptr<Hall>> &Halls, std::vector<PersonBookPair> &observers) {
+void Menu::displayMenu() {
+    Book b;
+    std::vector<Book> books;
+    b.readFromFile(books);
+    ////--------------------------------------------------------
+    Customer c;
+    std::vector<std::shared_ptr<Person>> Customers;
+    c.CustomersFromFile(Customers);
+    ///----------------------------------------------------
+    Employee e;
+    std::vector<std::shared_ptr<Person>> Employees;
+    e.employeesFromFile(Employees);
+    ///-------------------------------------------------
+    Sponsor s;
+    std::vector<std::shared_ptr<Person>> Sponsors;
+    s.sponsorsFromFile(Sponsors);
+    ///-------------------------------------------------
+    Hall hl;
+    std::vector<std::shared_ptr<Hall>> Halls;
+    hl.hallsFromFile(Halls);
+    ///--------------------------------------------------
+    std::vector<WaitingList::PersonBookPair> observers;
+    ///----------------------------------------------------
     int choice;
     std::string spatiu;
     ReservationManager reservationManager;

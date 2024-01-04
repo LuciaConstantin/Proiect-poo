@@ -27,9 +27,7 @@ private:
 
 public:
     using PersonBookPair = std::tuple<std::shared_ptr<ConcretePerson>, Book>;
-    void displayMenu(std::vector<std::shared_ptr<Person>> &Customers, std::vector<Book> &books,
-                     std::vector<std::shared_ptr<Person>> &Employees,std::vector<std::shared_ptr<Person>> &Sponsors,
-                     std::vector<std::shared_ptr<Hall>> &Halls,std::vector<PersonBookPair>& observers);
+    void displayMenu();
 
     Menu(const Menu&) =delete;/// deleting copy constructor
     static Menu* getInstance();
