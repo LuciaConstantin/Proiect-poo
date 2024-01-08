@@ -40,7 +40,6 @@ public:
 
     virtual void insertPerson(std::vector<std::shared_ptr<Person>> &Persons) = 0;
 
-    // Metode pentru a seta membrii clasei Person
     void setFirstName(const std::string &firstName);
     void setLastName(const std::string &lastName);
     void setEmail(const std::string &email);
@@ -102,7 +101,6 @@ public:
         return std::dynamic_pointer_cast<ConcretePerson>(builder);
     }
 };
-
 
 
 
